@@ -16,3 +16,10 @@ AbilitySystemGlobalsClassName="/Script/GasRpg.GasRpgAbilitySystemGlobals"
 # Config/DefaultInput.ini
 DefaultInputComponentClass=/Script/GasRpg.GRInputComponent
 ```
+4. Set the asset manager class
+```ini
+# Config/DefaultEngine.ini
+[/Script/Engine.Engine]
+AssetManagerClassName=/Script/GasRpg.GasRpgAssetManager
+bUseFixedFrameRate=True
+```
