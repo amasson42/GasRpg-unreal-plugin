@@ -1,0 +1,42 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "0.1",
+	"FriendlyName": "GasRpg",
+	"Description": "Wrapper around Gameplay Ability System to declare base classes and functions for a rpg game",
+	"Category": "Gameplay",
+	"CreatedBy": "Amasson",
+	"CreatedByURL": "",
+	"DocsURL": "",
+	"MarketplaceURL": "",
+	"SupportURL": "",
+	"CanContainContent": true,
+	"IsBetaVersion": true,
+	"IsExperimentalVersion": false,
+	"Installed": false,
+	"Modules": [
+		{
+			"Name": "GasRpg",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		}
+	],
+    "Plugins": [
+        {
+            "Name": "LibAmasson",
+            "Enabled": true
+        },
+        {
+            "Name": "FactionSystem",
+            "Enabled": true
+        },
+        {
+            "Name": "GameplayAbilities",
+            "Enabled": true
+        },
+        {
+            "Name": "EnhancedInput",
+            "Enabled": true
+        }
+    ]
+}
