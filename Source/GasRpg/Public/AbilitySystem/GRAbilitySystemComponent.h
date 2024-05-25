@@ -46,6 +46,7 @@ public:
 	FAbilitySpecChangeSignature OnAbilitySpecChange;
 	FAbilitySpecRemovingSignature OnAbilitySpecRemoving;
 
+    UFUNCTION(BlueprintCallable, Category = "Ability")
 	FGameplayAbilitySpecHandle GrantAbility(const FGameplayAbilityGrant& Ability);
 	void GrantStartupAbilities(const TArray<FGameplayAbilityGrant>& Abilities);
 
