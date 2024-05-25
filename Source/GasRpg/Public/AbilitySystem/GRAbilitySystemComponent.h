@@ -46,7 +46,7 @@ public:
 	FAbilitySpecChangeSignature OnAbilitySpecChange;
 	FAbilitySpecRemovingSignature OnAbilitySpecRemoving;
 
-	void GrantAbility(const FGameplayAbilityGrant& Ability);
+	FGameplayAbilitySpecHandle GrantAbility(const FGameplayAbilityGrant& Ability);
 	void GrantStartupAbilities(const TArray<FGameplayAbilityGrant>& Abilities);
 
 	/** Ability Level */

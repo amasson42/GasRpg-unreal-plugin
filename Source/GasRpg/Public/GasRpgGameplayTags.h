@@ -27,6 +27,8 @@ public:
     FGameplayTag Event;
     FGameplayTag Event_AbilitySystem_DamageApplied;
     FGameplayTag Event_AbilitySystem_UnitKilled;
+    FGameplayTag Event_Montage;
+    FGameplayTag Event_Montage_End;
 
     FGameplayTag Montage;
     FGameplayTag Montage_Combat;

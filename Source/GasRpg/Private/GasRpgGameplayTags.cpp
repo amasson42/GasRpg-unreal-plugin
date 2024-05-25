@@ -44,6 +44,16 @@ void FGRGameplayTags::InitializeNativeGameplayTags()
         FString("Event triggered when the actor has killed something")
     );
 
+    GameplayTags.Event_Montage = Manager.AddNativeGameplayTag(
+        FName("Event.Montage"),
+        FString("Root tag for montages events")
+    );
+
+    GameplayTags.Event_Montage_End = Manager.AddNativeGameplayTag(
+        FName("Event.Montage.End"),
+        FString("Event triggered when a montage is no longer relevant")
+    );
+
     GameplayTags.Effect_Info = Manager.AddNativeGameplayTag(
         FName("Effect.Info"),
         FString("Root tag for effects that get displayed on screen")

@@ -4,15 +4,15 @@
 #include "AbilitySystem/GRAbilitySystemComponent.h"
 
 
-void UGRAbilitySystemComponent::GrantAbility(const FGameplayAbilityGrant& Grant)
+FGameplayAbilitySpecHandle UGRAbilitySystemComponent::GrantAbility(const FGameplayAbilityGrant& Grant)
 {
     FGameplayAbilitySpec AbilitySpec(Grant.Class, Grant.Level);
     if (Grant.InputTag.IsValid())
         AbilitySpec.DynamicAbilityTags.AddTag(Grant.InputTag);
     if (Grant.ActiveOnGranted)
-        GiveAbilityAndActivateOnce(AbilitySpec);
+        return GiveAbilityAndActivateOnce(AbilitySpec);
     else
-        GiveAbility(AbilitySpec);
+        return GiveAbility(AbilitySpec);
 }
 
 void UGRAbilitySystemComponent::GrantStartupAbilities(const TArray<FGameplayAbilityGrant>& Abilities)
