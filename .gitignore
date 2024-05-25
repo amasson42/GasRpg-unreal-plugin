@@ -86,8 +86,3 @@ Makefile
 # Obsidian documentation markup configuration files
 .obsidian
 !.obsidian/plugins/*
-
-
-## User created files
-Source/GasRpg/Public/AbilitySystem/GRMainAttributeList.h
-Source/GasRpg/Public/AbilitySystem/GRMainAttributeSet.h
