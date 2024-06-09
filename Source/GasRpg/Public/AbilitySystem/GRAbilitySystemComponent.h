@@ -66,8 +66,11 @@ public:
 	void ClearAbilitiesFromInputTag(const FGameplayTag& InputTag);
 	void AssignInputTagToAbilitySpec(const FGameplayTag& InputTag, FGameplayAbilitySpec& AbilitySpec);
 
+    UFUNCTION(BlueprintCallable, Category = "Ability")
 	void AbilityInputTagPressed(const FGameplayTag& InputTag);
+    UFUNCTION(BlueprintCallable, Category = "Ability")
 	void AbilityInputTagHeld(const FGameplayTag& InputTag);
+    UFUNCTION(BlueprintCallable, Category = "Ability")
 	void AbilityInputTagReleased(const FGameplayTag& InputTag);
 
     DECLARE_DELEGATE_OneParam(FForEachAbilityDelegate, const FGameplayAbilitySpec&)
