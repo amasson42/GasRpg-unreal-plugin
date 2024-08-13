@@ -15,7 +15,7 @@ void UGRAbilitySystemComponent::ForEachAbilityDelegate(const FForEachAbilityDele
     }
 }
 
-void UGRAbilitySystemComponent::ForEachAbilityLambda(std::function<void (FGameplayAbilitySpec&)> Func)
+void UGRAbilitySystemComponent::ForEachAbilityLambda(TFunction<void (FGameplayAbilitySpec&)> Func)
 {
     FScopedAbilityListLock ActiveScopeLock(*this);
     for (FGameplayAbilitySpec& AbilitySpec : GetActivatableAbilities())

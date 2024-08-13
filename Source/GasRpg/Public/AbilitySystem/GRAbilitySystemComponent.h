@@ -76,7 +76,7 @@ public:
     DECLARE_DELEGATE_OneParam(FForEachAbilityDelegate, const FGameplayAbilitySpec&)
 
     void ForEachAbilityDelegate(const FForEachAbilityDelegate& Delegate);
-	void ForEachAbilityLambda(std::function<void (FGameplayAbilitySpec&)> Func);
+	void ForEachAbilityLambda(TFunction<void (FGameplayAbilitySpec&)> Func);
 
 	/** Ability Tags */
 	static bool AbilityHasIDTag(const UGameplayAbility* Ability);
