@@ -13,16 +13,6 @@ AGRPlayerController::AGRPlayerController()
     bReplicates = true;
 }
 
-void AGRPlayerController::PawnRestart(APawn* aPawn)
-{
-    BP_PawnRestart(aPawn);
-
-    if (AGRHUD* HUD = GetHUD<AGRHUD>())
-    {
-        HUD->InitOverlay();
-    }
-}
-
 void AGRPlayerController::Client_ShowFloatingDamages_Implementation(const FFloatingDamage& FloatingDamage)
 {
     ShowFloatingDamages(FloatingDamage);
@@ -37,6 +27,14 @@ void AGRPlayerController::BeginPlay()
 {
     Super::BeginPlay();
 
+}
+
+void AGRPlayerController::AcknowledgePossession(APawn* aPawn)
+{
+    if (AGRHUD* HUD = GetHUD<AGRHUD>())
+    {
+        HUD->InitOverlay();
+    }
 }
 
 void AGRPlayerController::SetupInputComponent()

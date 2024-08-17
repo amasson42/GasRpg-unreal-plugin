@@ -65,8 +65,6 @@ protected:
 
 	virtual void BeginPlay() override;
 
-	virtual void Restart() override;
-
 	/** RpgCharacter Interface*/
 
 	virtual int32 GetCharacterLevel_Implementation() const override;

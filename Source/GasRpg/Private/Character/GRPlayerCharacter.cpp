@@ -29,36 +29,23 @@ void AGRPlayerCharacter::OnRep_PlayerState()
 
 void AGRPlayerCharacter::InitAbilitySystem()
 {
-    AGRPlayerState* PS = GetPlayerState<AGRPlayerState>();
-
+    APlayerState* PS = GetPlayerState();
     if (!IsValid(PS))
     {
         UE_LOG(LogTemp, Warning, TEXT("GRPlayerCharacter with no valid player state. %s"), *UKismetSystemLibrary::GetDisplayName(this));
         return;
     }
-    check(PS);
 
-    AbilitySystemComponent = PS->GetAbilitySystemComponent();
+    IAbilitySystemInterface* AbilitySystemInterface = Cast<IAbilitySystemInterface>(PS);
+    if (AbilitySystemInterface == nullptr)
+    {
+        UE_LOG(LogTemp, Warning, TEXT("GRPlayerCharacter with no valid ability system interface. %s"), *UKismetSystemLibrary::GetDisplayName(this));
+        return;
+    }
+
+    AbilitySystemComponent = AbilitySystemInterface->GetAbilitySystemComponent();
     AbilitySystemComponent->InitAbilityActorInfo(PS, this);
-    AttributeSet = PS->GetAttributeSet();
+    AttributeSet = const_cast<UGRMainAttributeSet*>(AbilitySystemComponent->GetSet<UGRMainAttributeSet>());
 
     Super::InitAbilitySystem();
 }
-
-// int32 AGRPlayerCharacter::GetPlayerLevel_Implementation() const
-// {
-//     if (AGRPlayerState* PS = GetPlayerState<AGRPlayerState>())
-//     {
-//         return PS->GetPlayerLevel();
-//     }
-//     return 0;
-// }
-
-// ULevelingExperienceComponent* AGRPlayerCharacter::GetLevelingExperienceComponent_Implementation() const
-// {
-//     if (AGRPlayerState* PS = GetPlayerState<AGRPlayerState>())
-//     {
-//         return PS->GetLevelingExperience();
-//     }
-//     return nullptr;
-// }

@@ -23,8 +23,7 @@ public:
     AGRPlayerController();
 
 
-	virtual void PawnRestart(APawn* aPawn);
-
+	// TODO: Use event observing to extract this from the controller to its own component
 	/** Floating Damages */
 	UFUNCTION(Client, Reliable)
 	void Client_ShowFloatingDamages(const FFloatingDamage& FloatingDamage);
@@ -35,10 +34,8 @@ protected:
 
     virtual void BeginPlay() override;
 
+	virtual void AcknowledgePossession(APawn* aPawn) override;
 	virtual void SetupInputComponent() override;
-
-	UFUNCTION(BlueprintImplementableEvent, DisplayName = "PawnRestart")
-	void BP_PawnRestart(APawn* aPawn);
 
 	UFUNCTION(BlueprintCallable)
 	UGRAbilitySystemComponent* GetASC();

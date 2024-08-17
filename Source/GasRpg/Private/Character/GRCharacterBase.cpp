@@ -62,17 +62,6 @@ void AGRCharacterBase::BeginPlay()
 	checkf(CharacterKit, TEXT("CharacterKit not set for %s"), *GetNameSafe(this));
 }
 
-void AGRCharacterBase::Restart()
-{
-	Super::Restart();
-
-	AGRPlayerController* PC = GetController<AGRPlayerController>();
-	if (IsValid(PC))
-	{
-		PC->PawnRestart(this);
-	}
-}
-
 
 /** RpgCharacter Interface */
 

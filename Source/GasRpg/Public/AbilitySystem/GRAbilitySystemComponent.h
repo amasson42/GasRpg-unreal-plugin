@@ -92,11 +92,6 @@ public:
 	/** End Ability Tags */
 
 
-    /** Attribute Set */
-
-	/** Attributes Modifications */
-	// void AddAttributePoints(float Count, const FGameplayTag& AttributeTag);
-
 protected:
 
     /** Initialization */

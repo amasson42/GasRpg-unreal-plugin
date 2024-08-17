@@ -12,16 +12,6 @@ void UGRAbilitySystemComponent::AbilitySystemInitDone()
     OnGameplayEffectAppliedDelegateToSelf.AddUObject(this, &ThisClass::Client_OnEffectApplied);
 }
 
-
-// void UGRAbilitySystemComponent::AddAttributePoints(float Count, const FGameplayTag& AttributeTag)
-// {
-//     FGameplayEventData Payload;
-//     Payload.EventTag = AttributeTag;
-//     Payload.EventMagnitude = Count;
-//     UAbilitySystemBlueprintLibrary::SendGameplayEventToActor(GetAvatarActor(), AttributeTag, Payload);
-// }
-
-
 void UGRAbilitySystemComponent::OnRep_ActivateAbilities()
 {
     Super::OnRep_ActivateAbilities();
@@ -42,4 +32,3 @@ void UGRAbilitySystemComponent::Client_OnEffectApplied_Implementation(UAbilitySy
 
     OnEffectAssetTags.Broadcast(TagContainer);
 }
-
