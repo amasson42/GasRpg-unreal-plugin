@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GameFramework/PlayerController.h"
+#include "FactionSystem/FactionPlayerController.h"
 #include "GameplayTags.h"
 #include "GRPlayerController.generated.h"
 
@@ -14,7 +14,7 @@ class UGRAbilitySystemComponent;
  * 
  */
 UCLASS()
-class GASRPG_API AGRPlayerController : public APlayerController
+class GASRPG_API AGRPlayerController : public AFactionPlayerController
 {
 	GENERATED_BODY()
 

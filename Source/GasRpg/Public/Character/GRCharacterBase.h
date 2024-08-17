@@ -3,13 +3,12 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GameFramework/Character.h"
+#include "FactionSystem/FactionCharacter.h"
 #include "AbilitySystemInterface.h"
 #include "Character/RpgCharacterInterface.h"
 #include "GameplayTags.h"
 #include "GameplayEffectTypes.h"
 #include "LibAmassonTypes.h"
-#include "GenericTeamAgentInterface.h"
 #include "GRCharacterBase.generated.h"
 
 
@@ -25,7 +24,7 @@ class UGRCharacterKit;
  * @see ACharacter
  */ 
 UCLASS(Abstract)
-class GASRPG_API AGRCharacterBase : public ACharacter, public IAbilitySystemInterface, public IRpgCharacterInterface, public IGenericTeamAgentInterface
+class GASRPG_API AGRCharacterBase : public AFactionCharacter, public IAbilitySystemInterface, public IRpgCharacterInterface
 {
 	GENERATED_BODY()
 
@@ -55,11 +54,6 @@ public:
 
     UFUNCTION(BlueprintCallable, Category = "Gameplay Effect|Event Tag")
 	void RegisterAttributeEvent(FGameplayAttribute Attribute, FAttributeValueChangeSignature OnAttributeValueChanged);
-
-
-    /** Faction System */
-
-    virtual FGenericTeamId GetGenericTeamId() const override;
 
 protected:
 
@@ -106,11 +100,5 @@ protected:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Character Kit")
 	TObjectPtr<UGRCharacterKit> CharacterKit;
-
-
-    /** Faction System */
-
-    UPROPERTY(BlueprintReadWrite, EditAnywhere, Category = "Faction", meta = (AllowPrivateAccess = "true"))
-    TObjectPtr<class UFactionData> Faction;
 
 };

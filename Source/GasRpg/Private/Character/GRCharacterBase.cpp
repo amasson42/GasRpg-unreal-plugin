@@ -45,16 +45,6 @@ void AGRCharacterBase::RegisterAttributeEvent(FGameplayAttribute Attribute, FAtt
         });
 }
 
-FGenericTeamId AGRCharacterBase::GetGenericTeamId() const
-{
-    if (!IsValid(Faction))
-    {
-        return FGenericTeamId::NoTeam;
-    }
-
-    return Faction->TeamId;
-}
-
 void AGRCharacterBase::BeginPlay()
 {
 	Super::BeginPlay();
