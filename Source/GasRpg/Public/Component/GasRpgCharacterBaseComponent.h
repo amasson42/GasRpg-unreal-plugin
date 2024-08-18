@@ -34,4 +34,5 @@ protected:
     UFUNCTION(BlueprintCallable, BlueprintNativeEvent, Category = "Character Base")
     void AbilitySystemComponentInitialized(UAbilitySystemComponent* ASC);
 
+    friend class AGRCharacterBase;
 };

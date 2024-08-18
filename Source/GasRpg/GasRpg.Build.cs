@@ -32,6 +32,8 @@ public class GasRpg : ModuleRules
                 "UMG",
                 "EnhancedInput",
                 "AIModule",
+                "FactionSystem",
+                "LibAmasson",
 				// ... add other public dependencies that you statically link with here ...
 			}
 			);
@@ -45,8 +47,6 @@ public class GasRpg : ModuleRules
 				"Slate",
 				"SlateCore",
                 "NavigationSystem",
-                "LibAmasson",
-                "FactionSystem",
 				// ... add private dependencies that you statically link with here ...	
 			}
 			);

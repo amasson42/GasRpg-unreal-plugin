@@ -10,6 +10,7 @@
 #include "AbilitySystem/GRMainAttributeSet.h"
 #include "Data/GRCharacterKit.h"
 #include "FactionSystem/FactionData.h"
+#include "Component/GasRpgCharacterBaseComponent.h"
 
 
 AGRCharacterBase::AGRCharacterBase()
@@ -143,6 +144,13 @@ void AGRCharacterBase::InitAbilitySystem()
     }
 	AbilitySystemInitialized(AbilitySystemComponent);
 	OnASCRegistered.Broadcast(AbilitySystemComponent);
+    
+    TArray<UGasRpgCharacterBaseComponent*> CharacterBaseComponents;
+    GetComponents<UGasRpgCharacterBaseComponent>(CharacterBaseComponents);
+    for (auto && CharacterBaseComponent : CharacterBaseComponents)
+    {
+        CharacterBaseComponent->AbilitySystemComponentInitialized(AbilitySystemComponent);
+    }
 
 	AddCharacterBaseEffects();
 	AddCharacterAbilities();
