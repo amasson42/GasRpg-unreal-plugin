@@ -22,10 +22,10 @@
 		}
 	],
     "Plugins": [
-        {
-            "Name": "LibAmasson",
-            "Enabled": true
-        },
+		{
+			"Name": "LibAmasson",
+			"Enabled": true
+		},
         {
             "Name": "FactionSystem",
             "Enabled": true

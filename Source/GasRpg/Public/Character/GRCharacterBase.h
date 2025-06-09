@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "FactionSystem/FactionCharacter.h"
+#include "FactionSystem/Pawn/FactionCharacter.h"
 #include "AbilitySystemInterface.h"
 #include "Character/RpgCharacterInterface.h"
 #include "GameplayTags.h"
