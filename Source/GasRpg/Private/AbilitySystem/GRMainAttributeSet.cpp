@@ -81,7 +81,6 @@ void UGRMainAttributeSet::ExtractEffectModProperties(const FGameplayEffectModCal
 	{
 		Props.TargetAvatarActor = Data.Target.AbilityActorInfo->AvatarActor.Get();
 		Props.TargetController = Data.Target.AbilityActorInfo->PlayerController.Get();
-		Props.TargetCharacter = Cast<ACharacter>(Props.TargetAvatarActor);
 		Props.TargetASC = UAbilitySystemBlueprintLibrary::GetAbilitySystemComponent(Props.TargetAvatarActor);
 	}
 }
@@ -136,8 +135,8 @@ void UGRMainAttributeSet::PopFloatingDamages(float Damages, const FGameplayEffec
             FGRGameplayTags::Get().DamageTag,
             FloatingDamage.Tags
         );
-        FloatingDamage.Source = Props.SourceCharacter;
-        FloatingDamage.Target = Props.TargetCharacter;
+        FloatingDamage.Source = Props.SourceAvatarActor;
+        FloatingDamage.Target = Props.TargetAvatarActor;
         FloatingDamage.Damages = Damages;
 
         if (UGRAbilitySystemLibrary::IsBlockedHit(Props.EffectContextHandle))

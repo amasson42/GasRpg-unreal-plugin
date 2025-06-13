@@ -72,9 +72,6 @@ public:
     TObjectPtr<AController> SourceController = nullptr;
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
-    TObjectPtr<ACharacter> SourceCharacter = nullptr;
-
-    UPROPERTY(EditAnywhere, BlueprintReadWrite)
     TObjectPtr<UAbilitySystemComponent> TargetASC = nullptr;
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
@@ -82,9 +79,6 @@ public:
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
     TObjectPtr<AController> TargetController = nullptr;
-
-    UPROPERTY(EditAnywhere, BlueprintReadWrite)
-    TObjectPtr<ACharacter> TargetCharacter = nullptr;
 };
 
 USTRUCT(BlueprintType)

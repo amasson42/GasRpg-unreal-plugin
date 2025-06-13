@@ -77,10 +77,6 @@ void UGRAbilitySystemLibrary::ExtractPropertiesFromGameplayEffectContextHandle(c
                 Props.SourceController = Pawn->GetController();
             }
         }
-        if (Props.SourceController)
-        {
-            Props.SourceCharacter = Cast<ACharacter>(Props.SourceController->GetPawn());
-        }
     }
 }
 
