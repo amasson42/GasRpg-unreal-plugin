@@ -200,55 +200,6 @@ bool UGRAbilitySystemLibrary::RemoveMatchingTagsFromTagContainer(FGameplayTagCon
     return !ToRemoveTags.IsEmpty();
 }
 
-//     _   _   _        _ _           _
-//    / \ | |_| |_ _ __(_) |__  _   _| |_ ___  ___
-//   / _ \| __| __| '__| | '_ \| | | | __/ _ \/ __|
-//  / ___ \ |_| |_| |  | | |_) | |_| | ||  __/\__ \
-// /_/   \_\__|\__|_|  |_|_.__/ \__,_|\__\___||___/
-
-#define TagDoFunction(AttributeName, CategoryName) \
-    Function.ExecuteIfBound(FGRGameplayTags::Get().Attributes_##CategoryName##_##AttributeName);
-
-void UGRAbilitySystemLibrary::ForEachVitalAttributes(FGameplayTagDelegate Function)
-{
-    FOREACH_ATTRIBUTE_Vital(TagDoFunction);
-}
-
-void UGRAbilitySystemLibrary::ForEachVitalNoMaxAttributes(FGameplayTagDelegate Function)
-{
-    FOREACH_ATTRIBUTE_Vital_NoMax(TagDoFunction);
-}
-
-void UGRAbilitySystemLibrary::ForEachPrimaryAttributes(FGameplayTagDelegate Function)
-{
-    FOREACH_ATTRIBUTE_Primary(TagDoFunction);
-}
-
-void UGRAbilitySystemLibrary::ForEachSecondaryAttributes(FGameplayTagDelegate Function)
-{
-    FOREACH_ATTRIBUTE_Secondary(TagDoFunction);
-}
-
-void UGRAbilitySystemLibrary::ForEachMetaAttributes(FGameplayTagDelegate Function)
-{
-    FOREACH_ATTRIBUTE_Meta(TagDoFunction);
-}
-
-void UGRAbilitySystemLibrary::ForEachReplicatedAttributes(FGameplayTagDelegate Function)
-{
-    FOREACH_ATTRIBUTE_Replicated(TagDoFunction);
-}
-
-void UGRAbilitySystemLibrary::ForEachStatsAttributes(FGameplayTagDelegate Function)
-{
-    FOREACH_ATTRIBUTE_Stats(TagDoFunction);
-}
-
-void UGRAbilitySystemLibrary::ForEachAttributes(FGameplayTagDelegate Function)
-{
-    FOREACH_ATTRIBUTE_All(TagDoFunction);
-}
-
 //     _    _     _ _ _ _   _
 //    / \  | |__ (_) (_) |_(_) ___  ___
 //   / _ \ | '_ \| | | | __| |/ _ \/ __|

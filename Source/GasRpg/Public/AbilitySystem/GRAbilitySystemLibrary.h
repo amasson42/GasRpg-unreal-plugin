@@ -65,35 +65,6 @@ public:
 	static bool RemoveMatchingTagsFromTagContainer(FGameplayTagContainer& TagContainer, FGameplayTag MatchTag);
 
 
-	/** Attributes */
-
-    DECLARE_DYNAMIC_DELEGATE_OneParam(FGameplayTagDelegate, const FGameplayTag&, Tag);
-
-	UFUNCTION(BlueprintCallable, Category = "GRAbilitySystemLibrary|Attributes")
-	static void ForEachVitalAttributes(FGameplayTagDelegate Function);
-
-	UFUNCTION(BlueprintCallable, Category = "GRAbilitySystemLibrary|Attributes")
-	static void ForEachVitalNoMaxAttributes(FGameplayTagDelegate Function);
-
-	UFUNCTION(BlueprintCallable, Category = "GRAbilitySystemLibrary|Attributes")
-	static void ForEachPrimaryAttributes(FGameplayTagDelegate Function);
-
-	UFUNCTION(BlueprintCallable, Category = "GRAbilitySystemLibrary|Attributes")
-	static void ForEachSecondaryAttributes(FGameplayTagDelegate Function);
-
-	UFUNCTION(BlueprintCallable, Category = "GRAbilitySystemLibrary|Attributes")
-	static void ForEachMetaAttributes(FGameplayTagDelegate Function);
-
-	UFUNCTION(BlueprintCallable, Category = "GRAbilitySystemLibrary|Attributes")
-	static void ForEachReplicatedAttributes(FGameplayTagDelegate Function);
-
-	UFUNCTION(BlueprintCallable, Category = "GRAbilitySystemLibrary|Attributes")
-	static void ForEachStatsAttributes(FGameplayTagDelegate Function);
-
-	UFUNCTION(BlueprintCallable, Category = "GRAbilitySystemLibrary|Attributes")
-	static void ForEachAttributes(FGameplayTagDelegate Function);
-
-
 	/** Abilities */
 
 	UFUNCTION(BlueprintCallable, BlueprintPure, Category = "GRAbilitySystemLibrary|Abilities")
