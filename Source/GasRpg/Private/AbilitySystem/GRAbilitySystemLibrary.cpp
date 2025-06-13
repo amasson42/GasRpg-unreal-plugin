@@ -300,3 +300,27 @@ void UGRAbilitySystemLibrary::GetVectorFromTargetData(const FGameplayAbilityTarg
         Vector = VectorData->Vector;
     }
 }
+
+/** Ability System Component extensions */
+
+void UGRAbilitySystemLibrary::RegisterGameplayTagEvent(UAbilitySystemComponent* ASC, FGameplayTag EventTag, EGameplayTagEventType::Type TagEventType, FTagCountChangeSignature OnTagCountChanged)
+{
+    if (!IsValid(ASC))
+        return;
+
+    ASC->RegisterGameplayTagEvent(EventTag, TagEventType)
+        .AddLambda([OnTagCountChanged](const FGameplayTag& CallbackTag, int32 NewCount) {
+            OnTagCountChanged.ExecuteIfBound(CallbackTag, NewCount);
+        });
+}
+
+void UGRAbilitySystemLibrary::RegisterAttributeEvent(UAbilitySystemComponent* ASC, FGameplayAttribute Attribute, FAttributeValueChangeSignature OnAttributeValueChanged)
+{
+    if (!IsValid(ASC))
+        return;
+    
+    ASC->GetGameplayAttributeValueChangeDelegate(Attribute)
+        .AddLambda([OnAttributeValueChanged](const FOnAttributeChangeData& Data) {
+            OnAttributeValueChanged.ExecuteIfBound(Data.OldValue, Data.NewValue);
+        });
+}

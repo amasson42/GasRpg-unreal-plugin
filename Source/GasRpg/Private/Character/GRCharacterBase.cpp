@@ -24,27 +24,6 @@ UAbilitySystemComponent* AGRCharacterBase::GetAbilitySystemComponent() const
 	return AbilitySystemComponent;
 }
 
-void AGRCharacterBase::RegisterGameplayTagEvent(FGameplayTag EventTag, EGameplayTagEventType::Type TagEventType, FTagCountChangeSignature OnTagCountChanged)
-{
-	if (!IsValid(AbilitySystemComponent))
-        return;
-
-    AbilitySystemComponent->RegisterGameplayTagEvent(EventTag, TagEventType)
-        .AddLambda([OnTagCountChanged](const FGameplayTag& CallbackTag, int32 NewCount) {
-            OnTagCountChanged.ExecuteIfBound(CallbackTag, NewCount);
-        });
-}
-
-void AGRCharacterBase::RegisterAttributeEvent(FGameplayAttribute Attribute, FAttributeValueChangeSignature OnAttributeValueChanged)
-{
-    if (!IsValid(AbilitySystemComponent))
-        return;
-    
-    AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(Attribute)
-        .AddLambda([OnAttributeValueChanged](const FOnAttributeChangeData& Data) {
-            OnAttributeValueChanged.ExecuteIfBound(Data.OldValue, Data.NewValue);
-        });
-}
 
 void AGRCharacterBase::BeginPlay()
 {

@@ -93,5 +93,16 @@ public:
 
     UFUNCTION(BlueprintCallable, BlueprintPure, Category = "GRAbilitySystemLibrary|General")
     static void GetVectorFromTargetData(const FGameplayAbilityTargetDataHandle& Handle, const int Index, FVector& Vector);
+	
+	/** Ability System Component extensions */
+	DECLARE_DYNAMIC_DELEGATE_TwoParams(FTagCountChangeSignature, FGameplayTag, Tag, int32, NewCount);
+
+	UFUNCTION(BlueprintCallable, Category = "Gameplay Effect|Event Tag")
+	void RegisterGameplayTagEvent(UAbilitySystemComponent* ASC, FGameplayTag EventTag, EGameplayTagEventType::Type TagEventType, FTagCountChangeSignature OnTagCountChanged);
+
+	DECLARE_DYNAMIC_DELEGATE_TwoParams(FAttributeValueChangeSignature, float, OldValue, float, NewValue);
+
+	UFUNCTION(BlueprintCallable, Category = "Gameplay Effect|Event Tag")
+	void RegisterAttributeEvent(UAbilitySystemComponent* ASC, FGameplayAttribute Attribute, FAttributeValueChangeSignature OnAttributeValueChanged);
 
 };

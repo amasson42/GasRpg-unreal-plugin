@@ -45,16 +45,6 @@ public:
 
 	FORCEINLINE const UGRCharacterKit* GetCharacterKit() const { return CharacterKit; }
 
-    DECLARE_DYNAMIC_DELEGATE_TwoParams(FTagCountChangeSignature, FGameplayTag, Tag, int32, NewCount);
-
-	UFUNCTION(BlueprintCallable, Category = "Gameplay Effect|Event Tag")
-	void RegisterGameplayTagEvent(FGameplayTag EventTag, EGameplayTagEventType::Type TagEventType, FTagCountChangeSignature OnTagCountChanged);
-
-    DECLARE_DYNAMIC_DELEGATE_TwoParams(FAttributeValueChangeSignature, float, OldValue, float, NewValue);
-
-    UFUNCTION(BlueprintCallable, Category = "Gameplay Effect|Event Tag")
-	void RegisterAttributeEvent(FGameplayAttribute Attribute, FAttributeValueChangeSignature OnAttributeValueChanged);
-
 protected:
 
 	virtual void BeginPlay() override;
