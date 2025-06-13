@@ -232,33 +232,33 @@ void FGRGameplayTags::InitializeNativeGameplayTags()
 
     /** Player event */
 
-    GameplayTags.Player_Hide_Cursor = Manager.AddNativeGameplayTag(
-        FName("Player.Hide.Cursor"),
-        FString("Hide player cursor")
+    GameplayTags.Player_UI_Disable_Cursor = Manager.AddNativeGameplayTag(
+        FName("Player.UI.Disable.Cursor"),
+        FString("Hide the player cursor")
     );
 
-    GameplayTags.Player_Show_Cursor = Manager.AddNativeGameplayTag(
-        FName("Player.Show.Cursor"),
-        FString("Show player cursor")
+    GameplayTags.Player_UI_Enable_Cursor = Manager.AddNativeGameplayTag(
+        FName("Player.UI.Enable.Cursor"),
+        FString("Show the player cursor")
     );
 
-    GameplayTags.Player_Block_AbilityInputs = Manager.AddNativeGameplayTag(
-        FName("Player.Block.AbilityInputs"),
+    GameplayTags.Player_UI_Disable_AbilityInputs = Manager.AddNativeGameplayTag(
+        FName("Player.UI.Disable.AbilityInputs"),
         FString("Prevent player from using abilities with inputs")
     );
 
-    GameplayTags.Player_Block_CursorTrace = Manager.AddNativeGameplayTag(
-        FName("Player.Block.CursorTrace"),
+    GameplayTags.Player_UI_Disable_CursorTrace = Manager.AddNativeGameplayTag(
+        FName("Player.UI.Disable.CursorTrace"),
         FString("Prevent player from cursor tracing in different interaction systems")
     );
 
-    GameplayTags.Player_Lock_Forward = Manager.AddNativeGameplayTag(
-        FName("Player.Lock.Forward"),
+    GameplayTags.Player_UI_Enable_ForwardCameraLock = Manager.AddNativeGameplayTag(
+        FName("Player.UI.Enable.ForwardCameraLock"),
         FString("Lock player camera looking forward")
     );
 
-    GameplayTags.Player_Unlock_Forward = Manager.AddNativeGameplayTag(
-        FName("Player.Unlock.Forward"),
+    GameplayTags.Player_UI_Disable_ForwardCameraLock = Manager.AddNativeGameplayTag(
+        FName("Player.UI.Disable.ForwardCameraLock"),
         FString("Unlock player camera looking forward")
     );
 

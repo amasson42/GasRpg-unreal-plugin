@@ -29,7 +29,7 @@ void UGRAbilitySystemComponent::AbilityInputTagHeld(const FGameplayTag& InputTag
     if (!InputTag.IsValid())
         return;
 
-    if (HasMatchingGameplayTag(FGRGameplayTags::Get().Player_Block_AbilityInputs))
+    if (HasMatchingGameplayTag(FGRGameplayTags::Get().Player_UI_Disable_AbilityInputs))
         return;
 
     for (FGameplayAbilitySpec& AbilitySpec : GetActivatableAbilities())

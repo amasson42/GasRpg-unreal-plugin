@@ -73,12 +73,12 @@ public:
     FGameplayTag Magnitude_Duration;
     FGameplayTag Magnitude_Factor;
 
-    FGameplayTag Player_Hide_Cursor;
-    FGameplayTag Player_Show_Cursor;
-    FGameplayTag Player_Block_AbilityInputs;
-    FGameplayTag Player_Block_CursorTrace;
-    FGameplayTag Player_Lock_Forward;
-    FGameplayTag Player_Unlock_Forward;
+    FGameplayTag Player_UI_Disable_Cursor;
+    FGameplayTag Player_UI_Enable_Cursor;
+    FGameplayTag Player_UI_Disable_AbilityInputs;
+    FGameplayTag Player_UI_Disable_CursorTrace;
+    FGameplayTag Player_UI_Enable_ForwardCameraLock;
+    FGameplayTag Player_UI_Disable_ForwardCameraLock;
 
 protected:
 
