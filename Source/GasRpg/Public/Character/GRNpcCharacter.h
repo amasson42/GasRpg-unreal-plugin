@@ -28,17 +28,5 @@ protected:
     virtual void BeginPlay() override;
 
 	virtual void InitAbilitySystem() override;
-
-
-	/** Combat Interface */
-
-	// virtual int32 GetPlayerLevel_Implementation() const override { return Level; }
-	// virtual void SetCombatTarget_Implementation(USceneComponent *NewCombatTarget) override { CombatTarget = NewCombatTarget; }
-	// virtual USceneComponent* GetCombatTarget_Implementation() const override { return CombatTarget; }
-
-	// UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Character Class Default")
-	// int32 Level = 1;
-
-	// UPROPERTY()
-	// TObjectPtr<USceneComponent> CombatTarget;
+	
 };
