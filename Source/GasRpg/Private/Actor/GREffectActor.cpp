@@ -95,11 +95,11 @@ bool AGREffectActor::ApplyEffectWithParametersToAbilitySystemComponent(const FGa
 	return true;
 }
 
-bool AGREffectActor::RemoveEffectsFromActor(AActor* Actor, bool bInfiniteOnly)
+bool AGREffectActor::RemoveAppliedEffectsFromActor(AActor* Actor, bool bInfiniteOnly)
 {
 	UAbilitySystemComponent* ASC = UAbilitySystemBlueprintLibrary::GetAbilitySystemComponent(Actor);
 
-	return RemoveEffectsFromAbilitySystemComponent(ASC, bInfiniteOnly);
+	return RemoveAppliedEffectsFromAbilitySystemComponent(ASC, bInfiniteOnly);
 }
 
 bool _IsActiveHandleInfinite(UAbilitySystemComponent* ASC, const FActiveGameplayEffectHandle& Handle)
@@ -114,7 +114,7 @@ bool _IsActiveHandleInfinite(UAbilitySystemComponent* ASC, const FActiveGameplay
     return false;
 }
 
-bool AGREffectActor::RemoveEffectsFromAbilitySystemComponent(UAbilitySystemComponent* ASC, bool bInfiniteOnly)
+bool AGREffectActor::RemoveAppliedEffectsFromAbilitySystemComponent(UAbilitySystemComponent* ASC, bool bInfiniteOnly)
 {
 	if (!IsValid(ASC))
 		return false;
@@ -143,7 +143,7 @@ bool AGREffectActor::RemoveEffectsFromAbilitySystemComponent(UAbilitySystemCompo
 	return bRemovedEffect;
 }
 
-bool AGREffectActor::RemoveAllEffects(bool bInfiniteOnly)
+bool AGREffectActor::RemoveAllAppliedEffects(bool bInfiniteOnly)
 {
     bool bRemovedEffect = false;
 

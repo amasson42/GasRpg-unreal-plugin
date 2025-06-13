@@ -41,13 +41,13 @@ public:
     bool ApplyEffectWithParametersToAbilitySystemComponent(const FGameplayEffectParameters& EffectParams, UAbilitySystemComponent* TargetASC);
 
 	UFUNCTION(BlueprintCallable, Category = "Effects")
-	bool RemoveEffectsFromActor(AActor* Actor, bool bInfiniteOnly = false);
+	bool RemoveAppliedEffectsFromActor(AActor* Actor, bool bInfiniteOnly = false);
 
 	UFUNCTION(BlueprintCallable, Category = "Effects")
-	bool RemoveEffectsFromAbilitySystemComponent(UAbilitySystemComponent* ASC, bool bInfiniteOnly = false);
+	bool RemoveAppliedEffectsFromAbilitySystemComponent(UAbilitySystemComponent* ASC, bool bInfiniteOnly = false);
 
     UFUNCTION(BlueprintCallable, Category = "Effects")
-    bool RemoveAllEffects(bool bInfiniteOnly = false);
+    bool RemoveAllAppliedEffects(bool bInfiniteOnly = false);
 
 protected:
 
