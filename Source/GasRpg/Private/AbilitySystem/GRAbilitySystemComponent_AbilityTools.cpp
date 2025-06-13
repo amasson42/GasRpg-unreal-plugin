@@ -8,11 +8,12 @@
 
 void UGRAbilitySystemComponent::ForEachAbilityDelegate(const FForEachAbilityDelegate& Delegate)
 {
-    FScopedAbilityListLock ActiveScopeLock(*this);
-    for (const FGameplayAbilitySpec& AbilitySpec : GetActivatableAbilities())
+    if (!Delegate.IsBound())
+        return;
+    ForEachAbilityLambda([&Delegate](FGameplayAbilitySpec& AbilitySpec)
     {
-        Delegate.ExecuteIfBound(AbilitySpec);
-    }
+        Delegate.Execute(AbilitySpec);
+    });
 }
 
 void UGRAbilitySystemComponent::ForEachAbilityLambda(TFunction<void (FGameplayAbilitySpec&)> Func)

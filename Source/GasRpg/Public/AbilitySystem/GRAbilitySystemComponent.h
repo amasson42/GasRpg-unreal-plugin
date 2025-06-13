@@ -29,14 +29,6 @@ public:
     UFUNCTION(BlueprintCallable)
     void SetBaseEffectsLevel(float Level);
 
-    /** Effect Interception */
-
-	// UFUNCTION(BlueprintCallable, Category = "Interceptor")
-	// void AddGameplayEffectInterceptor(UObject* Interceptor);
-
-	// UFUNCTION(BlueprintCallable, Category = "Interceptor")
-	// void RemoveGameplayEffectInterceptor(UObject* Interceptor);
-
 
     /** Gameplay Ability */
 
@@ -73,8 +65,8 @@ public:
     UFUNCTION(BlueprintCallable, Category = "Ability")
 	void AbilityInputTagReleased(const FGameplayTag& InputTag);
 
-    DECLARE_DELEGATE_OneParam(FForEachAbilityDelegate, const FGameplayAbilitySpec&)
 
+	DECLARE_DELEGATE_OneParam(FForEachAbilityDelegate, FGameplayAbilitySpec&)
     void ForEachAbilityDelegate(const FForEachAbilityDelegate& Delegate);
 	void ForEachAbilityLambda(TFunction<void (FGameplayAbilitySpec&)> Func);
 
