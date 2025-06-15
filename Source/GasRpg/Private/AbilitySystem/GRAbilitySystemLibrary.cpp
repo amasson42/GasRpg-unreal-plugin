@@ -3,11 +3,7 @@
 #include "AbilitySystem/GRAbilitySystemLibrary.h"
 #include "GameplayEffect.h"
 #include "AbilitySystem/GRAbilitySystemComponent.h"
-#include "AbilitySystem/GRMainAttributeSet.h"
-#include "AbilitySystem/GRMainAttributeList.h"
 #include "AbilitySystemBlueprintLibrary.h"
-#include "GameFramework/Character.h"
-#include "GasRpgGameplayTags.h"
 
 //   ____                            _             _____  __  __           _
 //  / ___| __ _ _ __ ___   ___ _ __ | | __ _ _   _| ____|/ _|/ _| ___  ___| |_ ___

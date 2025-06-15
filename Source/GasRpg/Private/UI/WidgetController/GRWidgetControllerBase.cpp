@@ -5,7 +5,7 @@
 #include "Character/GRCharacterBase.h"
 #include "Player/GRPlayerState.h"
 #include "AbilitySystem/GRAbilitySystemComponent.h"
-#include "AbilitySystem/GRMainAttributeSet.h"
+#include "AbilitySystem/GRVitalAttributeSet.h"
 
 
 void UGRWidgetControllerBase::ObservedActorSet()
@@ -23,7 +23,7 @@ void UGRWidgetControllerBase::ObservedActorSet()
         if (UAbilitySystemComponent* ASC = GRCharacter->GetAbilitySystemComponent())
             AbilitySystemComponent = Cast<UGRAbilitySystemComponent>(ASC);
         if (UAttributeSet* AS = GRCharacter->GetAttributeSet())
-            AttributeSet = Cast<UGRMainAttributeSet>(AS);
+            AttributeSet = Cast<UGRVitalAttributeSet>(AS);
     }
     else if (IsValid(GRPlayerState))
     {

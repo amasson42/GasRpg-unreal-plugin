@@ -7,7 +7,7 @@
 #include "AbilitySystem/Effect/GRPrimaryAttributesBaseEffect.h"
 #include "AbilitySystem/Effect/GRSecondaryAttributesBaseEffect.h"
 #include "AbilitySystem/GRAbilitySystemLibrary.h"
-#include "AbilitySystem/GRMainAttributeSet.h"
+#include "AbilitySystem/GRVitalAttributeSet.h"
 #include "Data/GRCharacterKit.h"
 #include "FactionSystem/FactionData.h"
 #include "Component/GasRpgCharacterBaseComponent.h"
@@ -95,7 +95,7 @@ bool AGRCharacterBase::IsDead_Implementation() const
     if (!IsValid(AttributeSet))
 		return false;
 
-	if (UGRMainAttributeSet* AS = Cast<UGRMainAttributeSet>(AttributeSet))
+	if (UGRVitalAttributeSet* AS = Cast<UGRVitalAttributeSet>(AttributeSet))
 	{
 		return AS->GetHealth() <= 0.0f;
 	}

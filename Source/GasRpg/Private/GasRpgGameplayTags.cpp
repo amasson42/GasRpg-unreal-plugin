@@ -11,13 +11,31 @@ void FGRGameplayTags::InitializeNativeGameplayTags()
 
     /** Attributes */
 
-#define INITIALIZE_ATTRIBUTE_TAG(AttributeName, CategoryName) \
-    GameplayTags.Attributes_##CategoryName##_##AttributeName = Manager.AddNativeGameplayTag( \
-        FName(FString::Printf(TEXT("Attributes.%s.%s"), TEXT(#CategoryName), TEXT(#AttributeName))), \
-        FString("Attribute identifier tag") \
+    GameplayTags.Attributes_Vital_Health = Manager.AddNativeGameplayTag(
+        FName("Attributes.Vital.Health"),
+        FString("Attribute identifier tag")
     );
 
-    FOREACH_ATTRIBUTE_All(INITIALIZE_ATTRIBUTE_TAG);
+    GameplayTags.Attributes_Vital_MaxHealth = Manager.AddNativeGameplayTag(
+        FName("Attributes.Vital.MaxHealth"),
+        FString("Attribute identifier tag")
+    );
+
+    GameplayTags.Attributes_Meta_IncomingDamage = Manager.AddNativeGameplayTag(
+        FName("Attributes.Meta.IncomingDamage"),
+        FString("Attribute identifier tag")
+    );
+
+    GameplayTags.Attributes_Vital_Energy = Manager.AddNativeGameplayTag(
+        FName("Attributes.Vital.Energy"),
+        FString("Attribute identifier tag")
+    );
+
+    GameplayTags.Attributes_Vital_MaxEnergy = Manager.AddNativeGameplayTag(
+        FName("Attributes.Vital.MaxEnergy"),
+        FString("Attribute identifier tag")
+    );
+
 
     /** InputTag */
 

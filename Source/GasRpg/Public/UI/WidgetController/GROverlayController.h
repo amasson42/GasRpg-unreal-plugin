@@ -28,9 +28,6 @@ protected:
     TObjectPtr<class UGREffectInfoTagWcc> EffectInfoTagWcc;
 
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
-    TObjectPtr<class UGRMainAttributeSetWcc> MainAttributeSetWcc;
-
-    UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
     TObjectPtr<class UGRAbilitiesInputWcc> AbilitiesInputWcc;
 
 };

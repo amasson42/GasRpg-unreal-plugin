@@ -10,7 +10,7 @@
 class AGRCharacterBase;
 class AGRPlayerState;
 class UGRAbilitySystemComponent;
-class UGRMainAttributeSet;
+class UGRVitalAttributeSet;
 
 /**
  * 
@@ -32,7 +32,7 @@ protected:
 	UFUNCTION(BlueprintCallable, Category = "WidgetController|GasRpg")
 	FORCEINLINE UGRAbilitySystemComponent* GetGRAbilitySystemComponent() const { return AbilitySystemComponent; }
 	UFUNCTION(BlueprintCallable, Category = "WidgetController|GasRpg")
-	FORCEINLINE UGRMainAttributeSet* GetGRAttributeSet() const { return AttributeSet; }
+	FORCEINLINE UGRVitalAttributeSet* GetGRAttributeSet() const { return AttributeSet; }
 
 
 protected:
@@ -47,6 +47,6 @@ protected:
 	TObjectPtr<UGRAbilitySystemComponent> AbilitySystemComponent;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "WidgetController|GasRpg")
-	TObjectPtr<UGRMainAttributeSet> AttributeSet;
+	TObjectPtr<UGRVitalAttributeSet> AttributeSet;
 
 };

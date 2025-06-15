@@ -3,7 +3,7 @@
 
 #include "Player/GRPlayerState.h"
 #include "AbilitySystem/GRAbilitySystemComponent.h"
-#include "AbilitySystem/GRMainAttributeSet.h"
+#include "AbilitySystem/GRVitalAttributeSet.h"
 
 
 AGRPlayerState::AGRPlayerState()
@@ -14,7 +14,7 @@ AGRPlayerState::AGRPlayerState()
     AbilitySystemComponent->SetIsReplicated(true);
     AbilitySystemComponent->SetReplicationMode(EGameplayEffectReplicationMode::Mixed);
 
-    AttributeSet = CreateDefaultSubobject<UGRMainAttributeSet>("AttributeSet");
+    AttributeSet = CreateDefaultSubobject<UGRVitalAttributeSet>("AttributeSet");
 }
 
 UAbilitySystemComponent* AGRPlayerState::GetAbilitySystemComponent() const

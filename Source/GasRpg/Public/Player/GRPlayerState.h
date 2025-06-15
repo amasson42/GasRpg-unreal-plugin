@@ -9,7 +9,7 @@
 
 
 class UGRAbilitySystemComponent;
-class UGRMainAttributeSet;
+class UGRVitalAttributeSet;
 
 /**
  * 
@@ -25,7 +25,7 @@ public:
 
 
     virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
-    UGRMainAttributeSet* GetAttributeSet() const { return AttributeSet; }
+    UGRVitalAttributeSet* GetAttributeSet() const { return AttributeSet; }
 
 protected:
 
@@ -33,7 +33,7 @@ protected:
     TObjectPtr<UGRAbilitySystemComponent> AbilitySystemComponent;
 
     UPROPERTY()
-    TObjectPtr<UGRMainAttributeSet> AttributeSet;
+    TObjectPtr<UGRVitalAttributeSet> AttributeSet;
 
 
 };

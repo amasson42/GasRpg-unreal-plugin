@@ -119,9 +119,6 @@ protected:
     // UPROPERTY()
     // TMap<FGameplayTag, FGameplayAbilitySpec*> AbilitiesInputsMap;
 
-	// UPROPERTY()
-	// TArray<TObjectPtr<UObject>> EffectInterceptors;
-
 	UPROPERTY(BlueprintReadOnly, Category = "Base Effects")
 	TArray<FActiveGameplayEffectHandle> BaseEffectsHandles;
 
@@ -129,7 +126,4 @@ protected:
     float BaseEffectsLevel = 1.0f;
 
     friend class AGRCharacterBase;
-
-private:
-
 };

@@ -5,7 +5,6 @@
 
 #include "CoreMinimal.h"
 #include "GameplayTagContainer.h"
-#include "AbilitySystem/GRMainAttributeList.h"
 
 /**
  * GasRpgGameplayTags
@@ -18,9 +17,12 @@ public:
     static const FGRGameplayTags& Get() { return GameplayTags; }
     static void InitializeNativeGameplayTags();
 
-    #define __GASRPG_GAMEPLAYTAGS_SINGLETON_PROPERTYDECLARATION__(AttributeName, CategoryName) FGameplayTag Attributes_##CategoryName##_##AttributeName;
+	FGameplayTag Attributes_Vital_Health;
+	FGameplayTag Attributes_Vital_MaxHealth;
+	FGameplayTag Attributes_Meta_IncomingDamage;
 
-    FOREACH_ATTRIBUTE_All(__GASRPG_GAMEPLAYTAGS_SINGLETON_PROPERTYDECLARATION__)
+	FGameplayTag Attributes_Vital_Energy;
+	FGameplayTag Attributes_Vital_MaxEnergy;
 
     FGameplayTag InputTag;
 

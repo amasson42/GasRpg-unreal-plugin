@@ -2,7 +2,7 @@
 
 
 #include "AbilitySystem/EffectCalculation/EffectExecCalc_AttributeBased.h"
-#include "AbilitySystem/GRMainAttributeSet.h"
+#include "AbilitySystem/GRVitalAttributeSet.h"
 
 
 void UEffectExecCalc_AttributeBased::GetCapturedAttributesMagnitudes(const FGameplayEffectCustomExecutionParameters& ExecutionParams, TArray<float>& Attributes) const
@@ -52,5 +52,5 @@ void UEffectExecCalc_AttributeBased::AddExecutionOutputs(const TArray<FGameplayM
 
 FGameplayModifierEvaluatedData UEffectExecCalc_AttributeBased::MakeModifierEvaluatedData_IncomingDamage(EGameplayModOp::Type Operation, float Value) const
 {
-    return FGameplayModifierEvaluatedData(UGRMainAttributeSet::GetIncomingDamageAttribute(), Operation, Value);
+    return FGameplayModifierEvaluatedData(UGRVitalAttributeSet::GetIncomingDamageAttribute(), Operation, Value);
 }

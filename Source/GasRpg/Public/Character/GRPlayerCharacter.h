@@ -31,11 +31,4 @@ private:
 
     virtual void InitAbilitySystem() override;
 
-
-	// /** Combat Interface */
-	// virtual int32 GetPlayerLevel_Implementation() const override;
-
-	// /** Player Interface */
-	// virtual class ULevelingExperienceComponent* GetLevelingExperienceComponent_Implementation() const override;
-
 };

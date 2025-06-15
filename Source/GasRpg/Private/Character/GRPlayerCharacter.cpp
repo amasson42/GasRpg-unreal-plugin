@@ -4,7 +4,7 @@
 #include "Character/GRPlayerCharacter.h"
 #include "AbilitySystemComponent.h"
 #include "Player/GRPlayerState.h"
-#include "AbilitySystem/GRMainAttributeSet.h"
+#include "AbilitySystem/GRVitalAttributeSet.h"
 #include "Kismet/KismetSystemLibrary.h"
 
 
@@ -45,7 +45,7 @@ void AGRPlayerCharacter::InitAbilitySystem()
 
     AbilitySystemComponent = AbilitySystemInterface->GetAbilitySystemComponent();
     AbilitySystemComponent->InitAbilityActorInfo(PS, this);
-    AttributeSet = const_cast<UGRMainAttributeSet*>(AbilitySystemComponent->GetSet<UGRMainAttributeSet>());
+    AttributeSet = const_cast<UGRVitalAttributeSet*>(AbilitySystemComponent->GetSet<UGRVitalAttributeSet>());
 
     Super::InitAbilitySystem();
 }

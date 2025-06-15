@@ -3,10 +3,10 @@
 
 #include "UI/WidgetController/Components/GRVitalAttributesWcc.h"
 #include "AbilitySystem/GRAbilitySystemComponent.h"
-#include "AbilitySystem/GRMainAttributeSet.h"
+#include "AbilitySystem/GRVitalAttributeSet.h"
 
 
-void UGRVitalAttributesWcc::Initialize(UGRAbilitySystemComponent* ASC, UGRMainAttributeSet* AS)
+void UGRVitalAttributesWcc::Initialize(UGRAbilitySystemComponent* ASC, UGRVitalAttributeSet* AS)
 {
     AbilitySystemComponent = ASC;
     AttributeSet = AS;
@@ -16,10 +16,8 @@ void UGRVitalAttributesWcc::BroadcastValues()
 {
     if (AttributeSet)
     {
-        #define BroadcastAttributeValue(AttributeName, CategoryName) \
-            On##AttributeName##Changed.Broadcast(AttributeSet->Get##AttributeName());
-
-        FOREACH_ATTRIBUTE_Vital(BroadcastAttributeValue)
+        OnHealthChanged.Broadcast(AttributeSet->GetHealth());
+        OnMaxHealthChanged.Broadcast(AttributeSet->GetMaxHealth());
     }
 }
 
@@ -27,26 +25,17 @@ void UGRVitalAttributesWcc::BindCallbacksToDependencies()
 {
     if (AttributeSet && AbilitySystemComponent)
     {
-        #define BindOnAttributeChange(AttributeName, CategoryName) \
-            AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate( \
-                AttributeSet->Get##AttributeName##Attribute() \
-            ).AddLambda([this](const FOnAttributeChangeData& Data) { \
-                On##AttributeName##Changed.Broadcast(Data.NewValue); \
-            }); \
+        AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(
+            AttributeSet->GetHealthAttribute()
+        ).AddLambda([this](const FOnAttributeChangeData& Data) {
+            OnHealthChanged.Broadcast(Data.NewValue);
+        });
 
-        FOREACH_ATTRIBUTE_Vital(BindOnAttributeChange)
+        AbilitySystemComponent->GetGameplayAttributeValueChangeDelegate(
+            AttributeSet->GetMaxHealthAttribute()
+        ).AddLambda([this](const FOnAttributeChangeData& Data) {
+            OnMaxHealthChanged.Broadcast(Data.NewValue);
+        });
     }
 
 }
-
-
-#define DeclareIsVitalRelevant(AttributeName, CategoryName) \
-bool UGRVitalAttributesWcc::Is##AttributeName##Relevant() const \
-{ \
-    if (!IsValid(AttributeSet)) \
-        return false; \
-    \
-    return AttributeSet->GetMax##AttributeName() > 0.0f; \
-}
-
-FOREACH_ATTRIBUTE_Vital_NoMax(DeclareIsVitalRelevant)

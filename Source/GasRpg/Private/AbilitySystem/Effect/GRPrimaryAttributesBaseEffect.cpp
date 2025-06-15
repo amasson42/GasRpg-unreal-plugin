@@ -2,8 +2,7 @@
 
 
 #include "AbilitySystem/Effect/GRPrimaryAttributesBaseEffect.h"
-#include "AbilitySystem/GRMainAttributeSet.h"
-#include "AbilitySystem/GRMainAttributeList.h"
+#include "AbilitySystem/GRVitalAttributeSet.h"
 
 
 UGRPrimaryAttributesBaseEffect::UGRPrimaryAttributesBaseEffect()
@@ -13,11 +12,5 @@ UGRPrimaryAttributesBaseEffect::UGRPrimaryAttributesBaseEffect()
     FGameplayModifierInfo ModifierInfo;
     ModifierInfo.ModifierOp = EGameplayModOp::Additive;
     ModifierInfo.ModifierMagnitude = FScalableFloat();
-
-    #define AddPrimaryAttributeModifier(AttributeName, CategoryName) \
-        ModifierInfo.Attribute = UGRMainAttributeSet::Get##AttributeName##Attribute(); \
-        Modifiers.Add(ModifierInfo); \
-
-    FOREACH_ATTRIBUTE_Primary(AddPrimaryAttributeModifier);
 
 }
