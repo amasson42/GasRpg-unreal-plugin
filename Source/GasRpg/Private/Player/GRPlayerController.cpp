@@ -3,7 +3,8 @@
 
 #include "Player/GRPlayerController.h"
 #include "UI/HUD/GRHUD.h"
-#include "Input/GRInputComponent.h"
+#include "EnhancedInputComponent.h"
+#include "Input/GRInputConfig.h"
 #include "AbilitySystem/GRAbilitySystemComponent.h"
 #include "AbilitySystemBlueprintLibrary.h"
 
@@ -41,20 +42,36 @@ void AGRPlayerController::SetupInputComponent()
 {
     Super::SetupInputComponent();
 
+    BindAbilityActions();
+}
+
+void AGRPlayerController::BindAbilityActions()
+{
     if (!IsValid(AbilityInputConfig))
     {
         UE_LOG(LogTemp, Warning, TEXT("No GasRpg InputConfig set in player controller. Abilities have no input mapping"));
         return;
     }
 
-    UGRInputComponent* GasRpgInputComponent = Cast<UGRInputComponent>(InputComponent);
-    if (!GasRpgInputComponent)
+    UEnhancedInputComponent* EnhancedInputComponent = Cast<UEnhancedInputComponent>(InputComponent);
+    if (!EnhancedInputComponent)
     {
         UE_LOG(LogTemp, Warning, TEXT("InputComponent is not a subclass of UGRInputComponent. The GasRpg abilities won't get triggered"));
         return;
     }
-    
-    GasRpgInputComponent->BindAbilityActions(AbilityInputConfig, this, &ThisClass::AbilityInputTagPressed, &ThisClass::AbilityInputTagReleased, &ThisClass::AbilityInputTagHeld);
+
+    for (const FAbilityInputTagAction& InputTagAction : AbilityInputConfig->AbilityInputTagActions)
+    {
+        const FGameplayTag& InputTag = InputTagAction.Tag;
+        const UInputAction* InputAction = InputTagAction.Action;
+
+        if (!(IsValid(InputAction) && InputTag.IsValid()))
+            continue;
+
+        EnhancedInputComponent->BindAction(InputAction, ETriggerEvent::Started, this, &ThisClass::AbilityInputTagPressed, InputTag);
+        EnhancedInputComponent->BindAction(InputAction, ETriggerEvent::Completed, this, &ThisClass::AbilityInputTagReleased, InputTag);
+        EnhancedInputComponent->BindAction(InputAction, ETriggerEvent::Triggered, this, &ThisClass::AbilityInputTagHeld, InputTag);
+    }
 }
 
 void AGRPlayerController::AbilityInputTagPressed(FGameplayTag InputTag)

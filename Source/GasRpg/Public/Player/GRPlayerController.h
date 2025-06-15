@@ -45,6 +45,8 @@ protected:
 	UPROPERTY(EditDefaultsOnly, Category = "Input")
 	TObjectPtr<class UGRInputConfig> AbilityInputConfig;
 
+	void BindAbilityActions();
+
 private:
 
 	void AbilityInputTagPressed(FGameplayTag InputTag);

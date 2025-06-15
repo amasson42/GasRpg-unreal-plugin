@@ -11,12 +11,7 @@
 [/Script/GameplayAbilities.AbilitySystemGlobals]
 AbilitySystemGlobalsClassName="/Script/GasRpg.GasRpgAbilitySystemGlobals"
 ```
-3. Set the input component
-```ini
-# Config/DefaultInput.ini
-DefaultInputComponentClass=/Script/GasRpg.GRInputComponent
-```
-4. Set the asset manager class
+3. Set the asset manager class
 ```ini
 # Config/DefaultEngine.ini
 [/Script/Engine.Engine]

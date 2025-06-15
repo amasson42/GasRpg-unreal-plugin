@@ -16,7 +16,7 @@ struct FAbilityInputTagAction
 	GENERATED_BODY()
 
 	UPROPERTY(EditDefaultsOnly)
-	class UInputAction* Action = nullptr;
+	TObjectPtr<UInputAction> Action = nullptr;
 
 	UPROPERTY(EditDefaultsOnly)
 	FGameplayTag Tag = FGameplayTag();
@@ -37,11 +37,6 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Input")
 	const UInputAction* FindAbilityInputActionForTag(const FGameplayTag& InputTag) const;
 
-
-protected:
-
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Input")
 	TArray<FAbilityInputTagAction> AbilityInputTagActions;
-
-    friend class UGRInputComponent;
 };
