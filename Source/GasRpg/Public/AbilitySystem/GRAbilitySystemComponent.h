@@ -40,7 +40,6 @@ public:
 
     UFUNCTION(BlueprintCallable, Category = "Ability")
 	FGameplayAbilitySpecHandle GrantAbility(const FGameplayAbilityGrant& Ability);
-	void GrantStartupAbilities(const TArray<FGameplayAbilityGrant>& Abilities);
 
 	/** Ability Level */
 	void SetLevelForAbilitySpec(FGameplayAbilitySpec& AbilitySpec, int32 NewLevel);
@@ -84,14 +83,21 @@ public:
 	/** End Ability Tags */
 
 
-protected:
-
     /** Initialization */
 
 	UFUNCTION()
 	void AbilitySystemInitDone();
 
+protected:
+	
+	void AddKitBaseEffects();
+	void AddKitStartupAbilities();
+	void ApplyKitStartupEffects();
+
     /** Ability */
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Kit")
+	TObjectPtr<class UGRAbilityKit> AbilityKit;
 
 	bool bStartupAbilitiesGiven = false;
 
@@ -111,19 +117,15 @@ protected:
 
     /** Effects */
 
-	virtual FActiveGameplayEffectHandle ApplyGameplayEffectSpecToSelf(const FGameplayEffectSpec& GameplayEffect, FPredictionKey PredictionKey = FPredictionKey()) override;
-
 	UFUNCTION(Client, Reliable)
 	void Client_OnEffectApplied(UAbilitySystemComponent* AbilitySystemComponent, const FGameplayEffectSpec& EffectSpec, FActiveGameplayEffectHandle EffectHandle);
 
     // UPROPERTY()
     // TMap<FGameplayTag, FGameplayAbilitySpec*> AbilitiesInputsMap;
 
-	UPROPERTY(BlueprintReadOnly, Category = "Base Effects")
+	UPROPERTY()
 	TArray<FActiveGameplayEffectHandle> BaseEffectsHandles;
 
-    UPROPERTY(BlueprintReadOnly, Category = "Base Effects")
+    UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Base Effects")
     float BaseEffectsLevel = 1.0f;
-
-    friend class AGRCharacterBase;
 };

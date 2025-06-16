@@ -15,19 +15,6 @@ FGameplayAbilitySpecHandle UGRAbilitySystemComponent::GrantAbility(const FGamepl
         return GiveAbility(AbilitySpec);
 }
 
-void UGRAbilitySystemComponent::GrantStartupAbilities(const TArray<FGameplayAbilityGrant>& Abilities)
-{
-    for (const FGameplayAbilityGrant& Ability : Abilities)
-    {
-        GrantAbility(Ability);
-    }
-    bStartupAbilitiesGiven = true;
-
-    ForEachAbilityLambda([this](FGameplayAbilitySpec& AbilitySpec) {
-        OnAbilitySpecChange.Broadcast(this, AbilitySpec);
-    });
-}
-
 void UGRAbilitySystemComponent::SetLevelForAbilitySpec(FGameplayAbilitySpec& AbilitySpec, int32 NewLevel)
 {
     if (AbilitySpec.Level != NewLevel)

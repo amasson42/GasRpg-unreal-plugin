@@ -8,7 +8,7 @@
 #include "AbilitySystem/Effect/GRSecondaryAttributesBaseEffect.h"
 #include "AbilitySystem/GRAbilitySystemLibrary.h"
 #include "AbilitySystem/GRVitalAttributeSet.h"
-#include "Data/GRCharacterKit.h"
+#include "Data/GRAbilityKit.h"
 #include "FactionSystem/FactionData.h"
 #include "Component/GasRpgCharacterBaseComponent.h"
 
@@ -29,7 +29,6 @@ void AGRCharacterBase::BeginPlay()
 {
 	Super::BeginPlay();
 
-	checkf(CharacterKit, TEXT("CharacterKit not set for %s"), *GetNameSafe(this));
 }
 
 
@@ -123,77 +122,9 @@ void AGRCharacterBase::InitAbilitySystem()
     }
 	AbilitySystemInitialized(AbilitySystemComponent);
 	OnASCRegistered.Broadcast(AbilitySystemComponent);
-    
-    TArray<UGasRpgCharacterBaseComponent*> CharacterBaseComponents;
-    GetComponents<UGasRpgCharacterBaseComponent>(CharacterBaseComponents);
-    for (auto && CharacterBaseComponent : CharacterBaseComponents)
-    {
-        CharacterBaseComponent->AbilitySystemComponentInitialized(AbilitySystemComponent);
-    }
-
-	AddCharacterBaseEffects();
-	AddCharacterAbilities();
-	ApplyBeginEffects();
 }
 
 void AGRCharacterBase::AbilitySystemInitialized_Implementation(UAbilitySystemComponent* ASC)
 {
 	
-}
-
-
-void AGRCharacterBase::AddCharacterBaseEffects()
-{
-    if (!HasAuthority())
-        return;
-
-    if (!IsValid(AbilitySystemComponent))
-        return;
-
-    const float CharacterLevel = static_cast<float>(IRpgCharacterInterface::Execute_GetCharacterLevel(this));
-
-	UGRAbilitySystemComponent* ASC = Cast<UGRAbilitySystemComponent>(AbilitySystemComponent);
-
-	if (!IsValid(ASC))
-        return
-
-    ASC->SetBaseEffectsLevel(CharacterLevel);
-
-    TArray<TSubclassOf<UGameplayEffect>> BaseEffects;
-    CharacterKit->GetBaseEffects(BaseEffects);
-
-	for(const TSubclassOf<UGameplayEffect>& EffectClass : BaseEffects)
-    {
-        ASC->AddBaseEffect(EffectClass);
-    }
-}
-
-void AGRCharacterBase::AddCharacterAbilities()
-{
-	if (!HasAuthority())
-        return;
-
-	UGRAbilitySystemComponent* ASC = Cast<UGRAbilitySystemComponent>(GetAbilitySystemComponent());
-    if (!IsValid(ASC))
-        return;
-
-    TArray<FGameplayAbilityGrant> StartupAbilities;
-    CharacterKit->GetStartupAbilities(StartupAbilities);
-    ASC->GrantStartupAbilities(StartupAbilities);
-}
-
-void AGRCharacterBase::ApplyBeginEffects()
-{
-	if (!HasAuthority())
-        return;
-
-    if (!IsValid(AbilitySystemComponent))
-        return;
-
-    TArray<FGameplayEffectParameters> BeginEffects;
-    CharacterKit->GetOnBeginEffects(BeginEffects);
-	for(const FGameplayEffectParameters& Effect : BeginEffects)
-    {
-		UGRAbilitySystemLibrary::ApplyGameplayEffectWithParameters(Effect, nullptr, AbilitySystemComponent);
-    }
 }

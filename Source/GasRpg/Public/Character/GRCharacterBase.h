@@ -14,7 +14,7 @@
 
 class UAbilitySystemComponent;
 class UAttributeSet;
-class UGRCharacterKit;
+class UGRAbilityKit;
 
 /**
  * GRCharacterBase is the base character class for every character.
@@ -42,8 +42,6 @@ public:
 
 	UFUNCTION(BlueprintCallable, Category = "Ability")
 	FORCEINLINE UAttributeSet* GetAttributeSet() const { return AttributeSet; }
-
-	FORCEINLINE const UGRCharacterKit* GetCharacterKit() const { return CharacterKit; }
 
 protected:
 
@@ -78,17 +76,10 @@ protected:
 	UFUNCTION(BlueprintNativeEvent, Category = "Ability System")
 	void AbilitySystemInitialized(UAbilitySystemComponent* ASC);
 
-	void AddCharacterBaseEffects();
-	void AddCharacterAbilities();
-	void ApplyBeginEffects();
-
 	UPROPERTY(BlueprintReadOnly, VisibleAnywhere, Category = "Ability", meta = (AllowPrivateAccess = "true"))
 	TObjectPtr<UAbilitySystemComponent> AbilitySystemComponent;
 
 	UPROPERTY()
 	TObjectPtr<UAttributeSet> AttributeSet;
-
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Character Kit")
-	TObjectPtr<UGRCharacterKit> CharacterKit;
 
 };
