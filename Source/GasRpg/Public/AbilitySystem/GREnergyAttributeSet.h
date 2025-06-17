@@ -34,14 +34,14 @@ public:
 
 	/** Energy Attributes */
 
-	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_Energy, Category = "Vital Attributes")
-	FGameplayAttributeData Energy;
-	UFUNCTION() void OnRep_Energy(const FGameplayAttributeData& OldEnergy) const;
-	ATTRIBUTE_ACCESSORS(UGREnergyAttributeSet, Energy);
+	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_Mana, Category = "Energy Attributes")
+	FGameplayAttributeData Mana;
+	UFUNCTION() void OnRep_Mana(const FGameplayAttributeData& OldMana) const;
+	ATTRIBUTE_ACCESSORS(UGREnergyAttributeSet, Mana);
 
-	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_MaxEnergy, Category = "Vital Attributes")
-	FGameplayAttributeData MaxEnergy;
-	UFUNCTION() void OnRep_MaxEnergy(const FGameplayAttributeData& OldMaxEnergy) const;
-	ATTRIBUTE_ACCESSORS(UGREnergyAttributeSet, MaxEnergy);
+	UPROPERTY(BlueprintReadOnly, ReplicatedUsing = OnRep_MaxMana, Category = "Energy Attributes")
+	FGameplayAttributeData MaxMana;
+	UFUNCTION() void OnRep_MaxMana(const FGameplayAttributeData& OldMaxMana) const;
+	ATTRIBUTE_ACCESSORS(UGREnergyAttributeSet, MaxMana);
 
 };

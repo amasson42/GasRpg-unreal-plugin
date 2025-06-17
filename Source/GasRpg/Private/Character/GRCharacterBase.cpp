@@ -4,13 +4,7 @@
 #include "Character/GRCharacterBase.h"
 #include "Player/GRPlayerController.h"
 #include "AbilitySystem/GRAbilitySystemComponent.h"
-#include "AbilitySystem/Effect/GRPrimaryAttributesBaseEffect.h"
-#include "AbilitySystem/Effect/GRSecondaryAttributesBaseEffect.h"
-#include "AbilitySystem/GRAbilitySystemLibrary.h"
 #include "AbilitySystem/GRVitalAttributeSet.h"
-#include "Data/GRAbilityKit.h"
-#include "FactionSystem/FactionData.h"
-#include "Component/GasRpgCharacterBaseComponent.h"
 
 
 AGRCharacterBase::AGRCharacterBase()
@@ -88,31 +82,15 @@ void AGRCharacterBase::DeactivateRpgEventForTag_Implementation(FGameplayTag RpgE
     }
 }
 
-
-bool AGRCharacterBase::IsDead_Implementation() const
-{
-    if (!IsValid(AttributeSet))
-		return false;
-
-	if (UGRVitalAttributeSet* AS = Cast<UGRVitalAttributeSet>(AttributeSet))
-	{
-		return AS->GetHealth() <= 0.0f;
-	}
-
-	return false;
-}
-
-IRpgCharacterInterface::FOnASCRegisteredDelegate& AGRCharacterBase::GetOnASCRegisteredDelegate()
-{
-    return OnASCRegistered;
-}
-
-FOnDeathBroadcastSignature& AGRCharacterBase::GetOnDeathDelegate()
-{
-    return OnDeath;
-}
-
 /** Ability System */
+
+void AGRCharacterBase::WithInitializedAbilitySystem(const FWithInitializedAbilitySystemDelegate& Delegate)
+{
+    if (bASCInitialized)
+        Delegate.ExecuteIfBound(AbilitySystemComponent);
+    else
+        OnAbilitySystemInitialized.Add(Delegate);
+}
 
 void AGRCharacterBase::InitAbilitySystem()
 {
@@ -120,11 +98,6 @@ void AGRCharacterBase::InitAbilitySystem()
     {
         ASC->AbilitySystemInitDone();
     }
-	AbilitySystemInitialized(AbilitySystemComponent);
-	OnASCRegistered.Broadcast(AbilitySystemComponent);
-}
-
-void AGRCharacterBase::AbilitySystemInitialized_Implementation(UAbilitySystemComponent* ASC)
-{
-	
+    bASCInitialized = true;
+    OnAbilitySystemInitialized.Broadcast(AbilitySystemComponent);
 }

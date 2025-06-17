@@ -18,17 +18,17 @@ void UGREnergyAttributeSet::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>
 {
     Super::GetLifetimeReplicatedProps(OutLifetimeProps);
 
-	DOREPLIFETIME_CONDITION_NOTIFY(UGREnergyAttributeSet, Energy, COND_None, REPNOTIFY_Always);
-	DOREPLIFETIME_CONDITION_NOTIFY(UGREnergyAttributeSet, MaxEnergy, COND_None, REPNOTIFY_Always);
+	DOREPLIFETIME_CONDITION_NOTIFY(UGREnergyAttributeSet, Mana, COND_None, REPNOTIFY_Always);
+	DOREPLIFETIME_CONDITION_NOTIFY(UGREnergyAttributeSet, MaxMana, COND_None, REPNOTIFY_Always);
 }
 
-void UGREnergyAttributeSet::OnRep_Energy(const FGameplayAttributeData& OldEnergy) const
+void UGREnergyAttributeSet::OnRep_Mana(const FGameplayAttributeData& OldMana) const
 {
-	GAMEPLAYATTRIBUTE_REPNOTIFY(UGREnergyAttributeSet, Energy, OldEnergy);
+	GAMEPLAYATTRIBUTE_REPNOTIFY(UGREnergyAttributeSet, Mana, OldMana);
 }
-void UGREnergyAttributeSet::OnRep_MaxEnergy(const FGameplayAttributeData& OldMaxEnergy) const
+void UGREnergyAttributeSet::OnRep_MaxMana(const FGameplayAttributeData& OldMaxMana) const
 {
-	GAMEPLAYATTRIBUTE_REPNOTIFY(UGREnergyAttributeSet, MaxEnergy, OldMaxEnergy);
+	GAMEPLAYATTRIBUTE_REPNOTIFY(UGREnergyAttributeSet, MaxMana, OldMaxMana);
 }
 
 void UGREnergyAttributeSet::PreAttributeChange(const FGameplayAttribute& Attribute, float& NewValue)
@@ -42,10 +42,10 @@ void UGREnergyAttributeSet::PostAttributeChange(const FGameplayAttribute& Attrib
 {
     Super::PostAttributeChange(Attribute, OldValue, NewValue);
 
-	if (Attribute == GetMaxEnergyAttribute())
+	if (Attribute == GetMaxManaAttribute())
 	{
-		float Percent = GetEnergy() / OldValue;
-		SetEnergy(Percent * NewValue);
+		float Percent = GetMana() / OldValue;
+		SetMana(Percent * NewValue);
 	}
 }
 
@@ -53,6 +53,6 @@ void UGREnergyAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCa
 {
     Super::PostGameplayEffectExecute(Data);
 
-	if (Data.EvaluatedData.Attribute == GetEnergyAttribute())
-		SetEnergy(FMath::Clamp(GetEnergy(), 0.0f, GetMaxEnergy()));
+	if (Data.EvaluatedData.Attribute == GetManaAttribute())
+		SetMana(FMath::Clamp(GetMana(), 0.0f, GetMaxMana()));
 }

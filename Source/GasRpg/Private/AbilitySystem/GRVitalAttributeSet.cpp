@@ -93,7 +93,7 @@ void UGRVitalAttributeSet::HandleModificationData_IncomingDamage(const FGameplay
 
 		if (bWasAlive && bFatal)
 		{
-			OnDeath.Broadcast(this);
+			OnDeath.Broadcast(this, Data.EffectSpec);
 
             SendGameplayEventToSourceActor(FGRGameplayTags::Get().Event_AbilitySystem_UnitKilled, 0, Data, Props);
 		}

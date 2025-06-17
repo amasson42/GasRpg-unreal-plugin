@@ -50,7 +50,7 @@ public:
 	FGameplayAttributeData IncomingDamage;
 	ATTRIBUTE_ACCESSORS(UGRVitalAttributeSet, IncomingDamage);
 
-	DECLARE_DYNAMIC_MULTICAST_DELEGATE_OneParam(FOnDeath, UGRVitalAttributeSet*, AttributeSet);
+	DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnDeath, UGRVitalAttributeSet*, AttributeSet, const FGameplayEffectSpec&, KillingEffectSpec);
 
 	UPROPERTY(BlueprintAssignable, Category = "Death")
 	FOnDeath OnDeath;

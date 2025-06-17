@@ -6,8 +6,6 @@
 #include "Components/ActorComponent.h"
 #include "GasRpgCharacterBaseComponent.generated.h"
 
-class AGRCharacterBase;
-
 
 /** Component that should be subclassed and added to all blueprints of AGRCharacterBase.
  *  It contains shared blueprint functionnalitites between Player and Npc characters.
@@ -24,7 +22,7 @@ public:
 	virtual void TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction) override;
 
     UFUNCTION(BlueprintCallable, Category = "Character Base")
-    AGRCharacterBase* GetGasRpgCharacter() const;
+    TScriptInterface<class IGasPawnInterface> GetGasRpgPawn() const;
 
 
 protected:

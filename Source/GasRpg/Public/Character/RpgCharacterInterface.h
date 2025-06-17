@@ -10,8 +10,6 @@
 
 class UAbilitySystemComponent;
 
-DECLARE_DYNAMIC_MULTICAST_DELEGATE_TwoParams(FOnDeathBroadcastSignature, AActor*, DeadActor, const FGameplayEffectSpec&, KillingEffectSpec);
-
 
 USTRUCT(BlueprintType, Blueprintable)
 struct FRpgCharacterMontage
@@ -61,9 +59,6 @@ class GASRPG_API IRpgCharacterInterface
 	// Add interface functions to this class. This is the class that will be inherited to implement this interface.
 public:
 
-    DECLARE_MULTICAST_DELEGATE_OneParam(FOnASCRegisteredDelegate, UAbilitySystemComponent*);
-
-
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
 	int32 GetCharacterLevel() const;
 
@@ -81,15 +76,5 @@ public:
 
     UFUNCTION(BlueprintNativeEvent, BlueprintCallable, meta = (DefaultToSelf = "Activator"))
     void DeactivateRpgEventForTag(FGameplayTag RpgEventTag, UObject* Activator);
-
-	UFUNCTION(BlueprintNativeEvent)
-	void Die(const FGameplayEffectSpec& KillingEffectSpec);
-
-	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
-	bool IsDead() const;
-
-	virtual FOnASCRegisteredDelegate& GetOnASCRegisteredDelegate() = 0;
-
-	virtual FOnDeathBroadcastSignature& GetOnDeathDelegate() = 0;
 
 };

@@ -6,6 +6,7 @@
 #include "FactionSystem/Pawn/FactionCharacter.h"
 #include "AbilitySystemInterface.h"
 #include "Character/RpgCharacterInterface.h"
+#include "Character/GasPawnInterface.h"
 #include "GameplayTags.h"
 #include "GameplayEffectTypes.h"
 #include "LibAmassonTypes.h"
@@ -24,18 +25,13 @@ class UGRAbilityKit;
  * @see ACharacter
  */ 
 UCLASS(Abstract)
-class GASRPG_API AGRCharacterBase : public AFactionCharacter, public IAbilitySystemInterface, public IRpgCharacterInterface
+class GASRPG_API AGRCharacterBase : public AFactionCharacter, public IAbilitySystemInterface, public IRpgCharacterInterface, public IGasPawnInterface
 {
 	GENERATED_BODY()
 
 public:
 
 	AGRCharacterBase();
-
-	IRpgCharacterInterface::FOnASCRegisteredDelegate OnASCRegistered;
-
-	UPROPERTY(BlueprintAssignable)
-	FOnDeathBroadcastSignature OnDeath;
 
 	/** Ability System */
 	virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
@@ -55,9 +51,6 @@ protected:
     virtual FRpgCharacterMontage GetMontage_Implementation(FGameplayTag MontageTag) const override;
     virtual void ActivateRpgEventForTag_Implementation(FGameplayTag RpgEventTag, UObject* Activator) override;
     virtual void DeactivateRpgEventForTag_Implementation(FGameplayTag RpgEventTag, UObject* Activator) override;
-	virtual bool IsDead_Implementation() const override;
-	virtual IRpgCharacterInterface::FOnASCRegisteredDelegate& GetOnASCRegisteredDelegate() override;
-	virtual FOnDeathBroadcastSignature& GetOnDeathDelegate() override;
 
     UFUNCTION(BlueprintImplementableEvent, Category = "RpgCharacter|Event")
     void ToggleRpgEventForTag(const FGameplayTag& RpgEventTag, bool bNewActive);
@@ -68,13 +61,19 @@ protected:
     UPROPERTY()
     TMap<FGameplayTag, FObjectSet> RpgEventActivators;
 
+	/** Gas Pawn Interface */
+
+	virtual void WithInitializedAbilitySystem(const FWithInitializedAbilitySystemDelegate& Delegate) override;
+
+	UPROPERTY(BlueprintAssignable)
+	FOnAbilitySystemInitializedDelegate OnAbilitySystemInitialized;
+
+	bool bASCInitialized = false;
+
     /** Ability System */
 
 	UFUNCTION()
 	virtual void InitAbilitySystem();
-
-	UFUNCTION(BlueprintNativeEvent, Category = "Ability System")
-	void AbilitySystemInitialized(UAbilitySystemComponent* ASC);
 
 	UPROPERTY(BlueprintReadOnly, VisibleAnywhere, Category = "Ability", meta = (AllowPrivateAccess = "true"))
 	TObjectPtr<UAbilitySystemComponent> AbilitySystemComponent;

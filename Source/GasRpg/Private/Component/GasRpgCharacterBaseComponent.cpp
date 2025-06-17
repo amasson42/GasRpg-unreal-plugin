@@ -2,7 +2,7 @@
 
 
 #include "Component/GasRpgCharacterBaseComponent.h"
-#include "Character/GRCharacterBase.h"
+#include "Character/GasPawnInterface.h"
 
 UGasRpgCharacterBaseComponent::UGasRpgCharacterBaseComponent()
 {
@@ -15,6 +15,13 @@ void UGasRpgCharacterBaseComponent::BeginPlay()
 {
 	Super::BeginPlay();
 
+	TScriptInterface<IGasPawnInterface> RpgPawn = GetGasRpgPawn();
+	if (RpgPawn)
+	{
+		FWithInitializedAbilitySystemDelegate Delegate;
+		Delegate.BindDynamic(this, &ThisClass::AbilitySystemComponentInitialized);
+		RpgPawn->WithInitializedAbilitySystem(Delegate);
+	}
 }
 
 void UGasRpgCharacterBaseComponent::TickComponent(float DeltaTime, ELevelTick TickType, FActorComponentTickFunction* ThisTickFunction)
@@ -23,9 +30,11 @@ void UGasRpgCharacterBaseComponent::TickComponent(float DeltaTime, ELevelTick Ti
 
 }
 
-AGRCharacterBase* UGasRpgCharacterBaseComponent::GetGasRpgCharacter() const
+TScriptInterface<IGasPawnInterface> UGasRpgCharacterBaseComponent::GetGasRpgPawn() const
 {
-    return Cast<AGRCharacterBase>(GetOwner());
+	if (GetOwner() && GetOwner()->GetClass()->ImplementsInterface(UGasPawnInterface::StaticClass()))
+	    return GetOwner();
+	return nullptr;
 }
 
 void UGasRpgCharacterBaseComponent::AbilitySystemComponentInitialized_Implementation(UAbilitySystemComponent* ASC)
