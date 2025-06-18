@@ -21,9 +21,11 @@ void UGRWidgetControllerBase::ObservedActorSet()
     if (IsValid(GRCharacter))
     {
         if (UAbilitySystemComponent* ASC = GRCharacter->GetAbilitySystemComponent())
+        {
             AbilitySystemComponent = Cast<UGRAbilitySystemComponent>(ASC);
-        if (UAttributeSet* AS = GRCharacter->GetAttributeSet())
-            AttributeSet = Cast<UGRVitalAttributeSet>(AS);
+            if (const UAttributeSet* AS = ASC->GetAttributeSet(UGRVitalAttributeSet::StaticClass()))
+                AttributeSet = Cast<UGRVitalAttributeSet>(const_cast<UAttributeSet*>(AS));
+        }
     }
     else if (IsValid(GRPlayerState))
     {

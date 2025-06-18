@@ -45,7 +45,6 @@ void AGRPlayerCharacter::InitAbilitySystem()
 
     AbilitySystemComponent = AbilitySystemInterface->GetAbilitySystemComponent();
     AbilitySystemComponent->InitAbilityActorInfo(PS, this);
-    AttributeSet = const_cast<UGRVitalAttributeSet*>(AbilitySystemComponent->GetSet<UGRVitalAttributeSet>());
 
     Super::InitAbilitySystem();
 }

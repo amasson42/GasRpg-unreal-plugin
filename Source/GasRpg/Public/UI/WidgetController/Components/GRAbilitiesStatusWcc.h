@@ -36,12 +36,6 @@ public:
     UPROPERTY(BlueprintAssignable, Category = "GAS|Abilities")
 	FOnAbilityStatusRemovedSignature OnAbilityStatusRemoved;
 
-    // UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "GAS|Abilities")
-    // void GetAbilityBookCategories(TSet<FName>& Names) const;
-
-    // UFUNCTION(BlueprintCallable, BlueprintPure = false, Category = "GAS|Abilities")
-    // void GetAllAbilitiesInformations(TArray<FGRAbilityInfo>& AbilitiesInfo) const;
-
 
 protected:
 

@@ -28,11 +28,6 @@ void AGRCharacterBase::BeginPlay()
 
 /** RpgCharacter Interface */
 
-int32 AGRCharacterBase::GetCharacterLevel_Implementation() const
-{
-    return 1;
-}
-
 FVector AGRCharacterBase::GetSocketLocation_Implementation(FGameplayTag SocketTagName) const
 {
     return GetActorLocation();
@@ -50,36 +45,6 @@ FRpgCharacterMontage AGRCharacterBase::GetMontage_Implementation(FGameplayTag Mo
         return FRpgCharacterMontage();
 
     return MontageArray->Montages[FMath::RandRange(0, MontageArray->Montages.Num() - 1)];
-}
-
-void AGRCharacterBase::ActivateRpgEventForTag_Implementation(FGameplayTag RpgEventTag, UObject* Activator)
-{
-    FObjectSet* Set = RpgEventActivators.Find(RpgEventTag);
-    if (Set)
-    {
-        Set->Objects.Add(Activator);
-    }
-    else
-    {
-        FObjectSet NewSet;
-        NewSet.Objects.Add(Activator);
-        RpgEventActivators.Add(RpgEventTag, NewSet);
-        ToggleRpgEventForTag(RpgEventTag, true);
-    }
-}
-
-void AGRCharacterBase::DeactivateRpgEventForTag_Implementation(FGameplayTag RpgEventTag, UObject* Activator)
-{
-    FObjectSet* Set = RpgEventActivators.Find(RpgEventTag);
-    if (Set)
-    {
-        Set->Objects.Remove(Activator);
-        if (Set->Objects.IsEmpty())
-        {
-            RpgEventActivators.Remove(RpgEventTag);
-            ToggleRpgEventForTag(RpgEventTag, false);
-        }
-    }
 }
 
 /** Ability System */

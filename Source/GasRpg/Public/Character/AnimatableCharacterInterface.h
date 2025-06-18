@@ -5,7 +5,7 @@
 #include "CoreMinimal.h"
 #include "UObject/Interface.h"
 #include "GameplayTagContainer.h"
-#include "RpgCharacterInterface.generated.h"
+#include "AnimatableCharacterInterface.generated.h"
 
 
 class UAbilitySystemComponent;
@@ -44,7 +44,7 @@ struct FRpgCharacterMontageArray
 
 // This class does not need to be modified.
 UINTERFACE(MinimalAPI)
-class URpgCharacterInterface : public UInterface
+class UAnimatableCharacterInterface : public UInterface
 {
 	GENERATED_BODY()
 };
@@ -52,15 +52,12 @@ class URpgCharacterInterface : public UInterface
 /**
  * 
  */
-class GASRPG_API IRpgCharacterInterface
+class GASRPG_API IAnimatableCharacterInterface
 {
 	GENERATED_BODY()
 
 	// Add interface functions to this class. This is the class that will be inherited to implement this interface.
 public:
-
-	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
-	int32 GetCharacterLevel() const;
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
 	FVector GetSocketLocation(FGameplayTag SocketTag) const;
@@ -70,11 +67,5 @@ public:
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable)
 	FRpgCharacterMontage GetMontage(FGameplayTag MontageTag) const;
-
-    UFUNCTION(BlueprintNativeEvent, BlueprintCallable, meta = (DefaultToSelf = "Activator"))
-    void ActivateRpgEventForTag(FGameplayTag RpgEventTag, UObject* Activator);
-
-    UFUNCTION(BlueprintNativeEvent, BlueprintCallable, meta = (DefaultToSelf = "Activator"))
-    void DeactivateRpgEventForTag(FGameplayTag RpgEventTag, UObject* Activator);
 
 };

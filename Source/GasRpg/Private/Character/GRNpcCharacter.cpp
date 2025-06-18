@@ -4,6 +4,7 @@
 #include "Character/GRNpcCharacter.h"
 #include "AbilitySystem/GRAbilitySystemComponent.h"
 #include "AbilitySystem/GRVitalAttributeSet.h"
+#include "AbilitySystem/GRMovementAttributeSet.h"
 
 
 AGRNpcCharacter::AGRNpcCharacter()
@@ -12,7 +13,8 @@ AGRNpcCharacter::AGRNpcCharacter()
     AbilitySystemComponent->SetIsReplicated(true);
     AbilitySystemComponent->SetReplicationMode(EGameplayEffectReplicationMode::Minimal);
 
-    AttributeSet = CreateDefaultSubobject<UGRVitalAttributeSet>("AttributeSet");
+    CreateDefaultSubobject<UGRVitalAttributeSet>("VitalAttributeSet");
+    CreateDefaultSubobject<UGRMovementAttributeSet>("MovementAttributeSet");
 }
 
 void AGRNpcCharacter::BeginPlay()
