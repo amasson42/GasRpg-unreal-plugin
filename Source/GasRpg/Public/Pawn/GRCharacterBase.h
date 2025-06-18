@@ -5,17 +5,12 @@
 #include "CoreMinimal.h"
 #include "FactionSystem/Pawn/FactionCharacter.h"
 #include "AbilitySystemInterface.h"
-#include "Character/AnimatableCharacterInterface.h"
-#include "Character/GasPawnInterface.h"
+#include "Pawn/AnimatableCharacterInterface.h"
+#include "Pawn/GasPawnInterface.h"
 #include "GameplayTags.h"
-#include "GameplayEffectTypes.h"
-#include "LibAmassonTypes.h"
 #include "GRCharacterBase.generated.h"
 
-
 class UAbilitySystemComponent;
-class UAttributeSet;
-class UGRAbilityKit;
 
 /**
  * GRCharacterBase is the base character class for every character.
@@ -52,7 +47,6 @@ protected:
     UPROPERTY(EditDefaultsOnly, Category = "RpgCharacter|Montage")
     TMap<FGameplayTag, FRpgCharacterMontageArray> RpgMontages;
 
-	UPROPERTY(BlueprintAssignable)
 	FOnAbilitySystemInitializedDelegate OnAbilitySystemInitialized;
 
 	bool bASCInitialized = false;

@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "Character/GRCharacterBase.h"
+#include "Pawn/GRCharacterBase.h"
 #include "GRNpcCharacter.generated.h"
 
 /**

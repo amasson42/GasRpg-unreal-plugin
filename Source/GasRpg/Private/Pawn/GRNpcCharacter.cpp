@@ -1,7 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "Character/GRNpcCharacter.h"
+#include "Pawn/GRNpcCharacter.h"
 #include "AbilitySystem/GRAbilitySystemComponent.h"
 #include "AbilitySystem/GRVitalAttributeSet.h"
 #include "AbilitySystem/GRMovementAttributeSet.h"

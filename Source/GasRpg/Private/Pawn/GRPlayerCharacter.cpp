@@ -1,10 +1,8 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "Character/GRPlayerCharacter.h"
+#include "Pawn/GRPlayerCharacter.h"
 #include "AbilitySystemComponent.h"
-#include "Player/GRPlayerState.h"
-#include "AbilitySystem/GRVitalAttributeSet.h"
 #include "Kismet/KismetSystemLibrary.h"
 
 

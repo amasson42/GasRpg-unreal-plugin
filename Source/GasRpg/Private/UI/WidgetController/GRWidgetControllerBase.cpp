@@ -2,7 +2,7 @@
 
 
 #include "UI/WidgetController/GRWidgetControllerBase.h"
-#include "Character/GRCharacterBase.h"
+#include "Pawn/GRCharacterBase.h"
 #include "Player/GRPlayerState.h"
 #include "AbilitySystem/GRAbilitySystemComponent.h"
 #include "AbilitySystem/GRVitalAttributeSet.h"

@@ -2,7 +2,7 @@
 
 
 #include "Component/GasRpgCharacterBaseComponent.h"
-#include "Character/GasPawnInterface.h"
+#include "Pawn/GasPawnInterface.h"
 
 UGasRpgCharacterBaseComponent::UGasRpgCharacterBaseComponent()
 {
