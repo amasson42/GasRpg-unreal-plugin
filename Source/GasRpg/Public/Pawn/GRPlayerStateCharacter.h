@@ -9,6 +9,8 @@
 /**
  * GRPlayerStateCharacter is a base class for a character that is playable.
  * They do not initialize their own gameplay ability component but instead look for one in their player state.
+ * 
+ * @see AGRCharacterBase
  */
 UCLASS()
 class GASRPG_API AGRPlayerStateCharacter : public AGRCharacterBase

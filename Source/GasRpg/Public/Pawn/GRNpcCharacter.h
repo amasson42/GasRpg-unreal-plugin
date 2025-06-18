@@ -7,9 +7,8 @@
 #include "GRNpcCharacter.generated.h"
 
 /**
- * GRNpcCharacter is the base character class for all characters that are not
- * playable. They can initialize their own gameplay ability component and
- * do not rely on any features from a player state or player controller.
+ * GRNpcCharacter is a base character class for characters that are not playable.
+ * They initialize their own gameplay ability component
  * 
  * @see AGRCharacterBase
  */

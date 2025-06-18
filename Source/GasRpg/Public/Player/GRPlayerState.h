@@ -25,15 +25,10 @@ public:
 
 
     virtual UAbilitySystemComponent* GetAbilitySystemComponent() const override;
-    UGRVitalAttributeSet* GetAttributeSet() const { return AttributeSet; }
 
 protected:
 
     UPROPERTY()
     TObjectPtr<UGRAbilitySystemComponent> AbilitySystemComponent;
-
-    UPROPERTY()
-    TObjectPtr<UGRVitalAttributeSet> AttributeSet;
-
 
 };
