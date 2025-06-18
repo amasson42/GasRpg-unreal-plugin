@@ -1,32 +1,32 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 
-#include "Pawn/GRPlayerCharacter.h"
+#include "Pawn/GRPlayerStateCharacter.h"
 #include "AbilitySystemComponent.h"
 #include "GameFramework/PlayerState.h"
 #include "Kismet/KismetSystemLibrary.h"
 
 
-AGRPlayerCharacter::AGRPlayerCharacter()
+AGRPlayerStateCharacter::AGRPlayerStateCharacter()
 {
 
 }
 
-void AGRPlayerCharacter::PossessedBy(AController* NewController)
+void AGRPlayerStateCharacter::PossessedBy(AController* NewController)
 {
     Super::PossessedBy(NewController);
 
     InitAbilitySystem();
 }
 
-void AGRPlayerCharacter::OnRep_PlayerState()
+void AGRPlayerStateCharacter::OnRep_PlayerState()
 {
     Super::OnRep_PlayerState();
 
     InitAbilitySystem();
 }
 
-void AGRPlayerCharacter::InitAbilitySystem()
+void AGRPlayerStateCharacter::InitAbilitySystem()
 {
     APlayerState* PS = GetPlayerState();
     if (!IsValid(PS))

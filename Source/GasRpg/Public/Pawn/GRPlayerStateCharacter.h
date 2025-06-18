@@ -4,23 +4,20 @@
 
 #include "CoreMinimal.h"
 #include "Pawn/GRCharacterBase.h"
-#include "GRPlayerCharacter.generated.h"
+#include "GRPlayerStateCharacter.generated.h"
 
 /**
- * GRPlayerCharacter is the base class for all characters that are playable.
- * They do not initialize their own gameplay ability component and use the
- * one from their player state.
- * 
- * @see AGRCharacterBase
+ * GRPlayerStateCharacter is a base class for a character that is playable.
+ * They do not initialize their own gameplay ability component but instead look for one in their player state.
  */
 UCLASS()
-class GASRPG_API AGRPlayerCharacter : public AGRCharacterBase
+class GASRPG_API AGRPlayerStateCharacter : public AGRCharacterBase
 {
 	GENERATED_BODY()
 
 public:
 
-    AGRPlayerCharacter();
+    AGRPlayerStateCharacter();
 
 
     virtual void PossessedBy(AController* NewController) override;
