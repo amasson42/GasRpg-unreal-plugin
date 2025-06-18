@@ -3,6 +3,7 @@
 
 #include "Pawn/GRPlayerCharacter.h"
 #include "AbilitySystemComponent.h"
+#include "GameFramework/PlayerState.h"
 #include "Kismet/KismetSystemLibrary.h"
 
 
