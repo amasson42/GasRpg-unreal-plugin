@@ -2,7 +2,6 @@
 
 
 #include "Pawn/GRCharacterBase.h"
-#include "Player/GRPlayerController.h"
 #include "AbilitySystem/GRAbilitySystemComponent.h"
 
 
@@ -56,11 +55,11 @@ void AGRCharacterBase::WithInitializedAbilitySystem(const FWithInitializedAbilit
         OnAbilitySystemInitialized.Add(Delegate);
 }
 
-void AGRCharacterBase::InitAbilitySystem()
+void AGRCharacterBase::InitAbilitySystem(UGRAbilityKit* AdditionalKit)
 {
 	if (UGRAbilitySystemComponent* ASC = Cast<UGRAbilitySystemComponent>(AbilitySystemComponent))
     {
-        ASC->AbilitySystemInitDone();
+        ASC->AbilitySystemInit(AdditionalKit);
     }
     bASCInitialized = true;
     OnAbilitySystemInitialized.Broadcast(AbilitySystemComponent);

@@ -27,6 +27,6 @@ protected:
 
     virtual void BeginPlay() override;
 
-	virtual void InitAbilitySystem() override;
+	virtual void InitAbilitySystem(UGRAbilityKit* AbilityKit = nullptr) override;
 	
 };

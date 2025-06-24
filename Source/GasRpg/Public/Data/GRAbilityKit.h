@@ -68,4 +68,5 @@ protected:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "Character Kit|Starting")
 	TArray<FGameplayEffectParameters> OnBeginEffects;
 
+	friend class UGRAbilitySystemComponent;
 };

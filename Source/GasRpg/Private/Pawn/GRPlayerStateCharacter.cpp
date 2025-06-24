@@ -26,7 +26,7 @@ void AGRPlayerStateCharacter::OnRep_PlayerState()
     InitAbilitySystem();
 }
 
-void AGRPlayerStateCharacter::InitAbilitySystem()
+void AGRPlayerStateCharacter::InitAbilitySystem(UGRAbilityKit* AbilityKit)
 {
     APlayerState* PS = GetPlayerState();
     if (!IsValid(PS))
@@ -45,5 +45,5 @@ void AGRPlayerStateCharacter::InitAbilitySystem()
     AbilitySystemComponent = AbilitySystemInterface->GetAbilitySystemComponent();
     AbilitySystemComponent->InitAbilityActorInfo(PS, this);
 
-    Super::InitAbilitySystem();
+    Super::InitAbilitySystem(AbilityKit);
 }

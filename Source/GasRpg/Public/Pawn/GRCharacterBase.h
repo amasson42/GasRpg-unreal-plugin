@@ -11,6 +11,7 @@
 #include "GRCharacterBase.generated.h"
 
 class UAbilitySystemComponent;
+class UGRAbilityKit;
 
 /**
  * GRCharacterBase is the base character class for every character.
@@ -55,6 +56,6 @@ protected:
 	TObjectPtr<UAbilitySystemComponent> AbilitySystemComponent;
 
 	UFUNCTION()
-	virtual void InitAbilitySystem();
+	virtual void InitAbilitySystem(UGRAbilityKit* AdditionalKit = nullptr);
 
 };

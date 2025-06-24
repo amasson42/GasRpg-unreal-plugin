@@ -86,13 +86,13 @@ public:
     /** Initialization */
 
 	UFUNCTION()
-	void AbilitySystemInitDone();
+	void AbilitySystemInit(UGRAbilityKit* AdditionalKit = nullptr);
 
 protected:
 	
-	void AddKitBaseEffects();
-	void AddKitStartupAbilities();
-	void ApplyKitStartupEffects();
+	void AddKitBaseEffects(UGRAbilityKit* Kit);
+	void AddKitStartupAbilities(UGRAbilityKit* Kit);
+	void ApplyKitStartupEffects(UGRAbilityKit* Kit);
 
     /** Ability */
 

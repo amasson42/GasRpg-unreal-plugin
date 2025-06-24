@@ -9,22 +9,35 @@
 
 /** Initialization */
 
-void UGRAbilitySystemComponent::AbilitySystemInitDone()
+void UGRAbilitySystemComponent::AbilitySystemInit(UGRAbilityKit* AdditionalKit)
 {
     OnGameplayEffectAppliedDelegateToSelf.AddUObject(this, &ThisClass::Client_OnEffectApplied);
 
-    if (GetOwner() && GetOwner()->HasAuthority() && IsValid(AbilityKit))
+    UGRAbilityKit* Kit;
+    if (AdditionalKit)
     {
-        AddKitBaseEffects();
-        AddKitStartupAbilities();
-        ApplyKitStartupEffects();
+        AdditionalKit->Parents.Add(AbilityKit);
+        Kit = AdditionalKit;
     }
+    else
+        Kit = AbilityKit;
+
+    if (GetOwner() && GetOwner()->HasAuthority() && IsValid(Kit))
+    {
+        AddKitBaseEffects(Kit);
+        AddKitStartupAbilities(Kit);
+        ApplyKitStartupEffects(Kit);
+    }
+
+    if (AdditionalKit)
+        AdditionalKit->Parents.Pop();
+
 }
 
-void UGRAbilitySystemComponent::AddKitBaseEffects()
+void UGRAbilitySystemComponent::AddKitBaseEffects(UGRAbilityKit* Kit)
 {
     TArray<TSubclassOf<UGameplayEffect>> BaseEffects;
-    AbilityKit->GetBaseEffects(BaseEffects);
+    Kit->GetBaseEffects(BaseEffects);
 
     for(const TSubclassOf<UGameplayEffect>& EffectClass : BaseEffects)
     {
@@ -32,10 +45,10 @@ void UGRAbilitySystemComponent::AddKitBaseEffects()
     }
 }
 
-void UGRAbilitySystemComponent::AddKitStartupAbilities()
+void UGRAbilitySystemComponent::AddKitStartupAbilities(UGRAbilityKit* Kit)
 {
     TArray<FGameplayAbilityGrant> StartupAbilities;
-    AbilityKit->GetStartupAbilities(StartupAbilities);
+    Kit->GetStartupAbilities(StartupAbilities);
 
     for (const FGameplayAbilityGrant& Ability : StartupAbilities)
     {
@@ -48,10 +61,10 @@ void UGRAbilitySystemComponent::AddKitStartupAbilities()
     });
 }
 
-void UGRAbilitySystemComponent::ApplyKitStartupEffects()
+void UGRAbilitySystemComponent::ApplyKitStartupEffects(UGRAbilityKit* Kit)
 {
     TArray<FGameplayEffectParameters> StartupEffects;
-    AbilityKit->GetStartupEffects(StartupEffects);
+    Kit->GetStartupEffects(StartupEffects);
     for(const FGameplayEffectParameters& Effect : StartupEffects)
     {
         UGRAbilitySystemLibrary::ApplyGameplayEffectWithParameters(Effect, nullptr, this);

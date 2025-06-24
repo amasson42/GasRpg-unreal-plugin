@@ -24,9 +24,9 @@ void AGRPlayerCharacter::BeginPlay()
     InitAbilitySystem();
 }
 
-void AGRPlayerCharacter::InitAbilitySystem()
+void AGRPlayerCharacter::InitAbilitySystem(UGRAbilityKit* AbilityKit)
 {
     AbilitySystemComponent->InitAbilityActorInfo(this, this);
 
-    Super::InitAbilitySystem();
+    Super::InitAbilitySystem(AbilityKit);
 }

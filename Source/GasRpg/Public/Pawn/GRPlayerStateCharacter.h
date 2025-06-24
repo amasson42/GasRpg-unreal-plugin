@@ -28,6 +28,9 @@ public:
 
 private:
 
-    virtual void InitAbilitySystem() override;
+    virtual void InitAbilitySystem(UGRAbilityKit* AbilityKit = nullptr) override;
+
+    UPROPERTY(BlueprintReadOnly, EditAnywhere, Category = "Ability", meta = (AllowPrivateAccess = "true"))
+    TObjectPtr<UGRAbilityKit> AbilityKit;
 
 };
