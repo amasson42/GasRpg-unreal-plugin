@@ -14,7 +14,7 @@ void UGRAbilitySystemComponent::AbilitySystemInit(UGRAbilityKit* AdditionalKit)
     OnGameplayEffectAppliedDelegateToSelf.AddUObject(this, &ThisClass::Client_OnEffectApplied);
 
     UGRAbilityKit* Kit;
-    if (AdditionalKit)
+    if (IsValid(AdditionalKit))
     {
         AdditionalKit->Parents.Add(AbilityKit);
         Kit = AdditionalKit;
@@ -22,14 +22,17 @@ void UGRAbilitySystemComponent::AbilitySystemInit(UGRAbilityKit* AdditionalKit)
     else
         Kit = AbilityKit;
 
-    if (GetOwner() && GetOwner()->HasAuthority() && IsValid(Kit))
+    if (IsValid(Kit))
     {
-        AddKitBaseEffects(Kit);
-        AddKitStartupAbilities(Kit);
-        ApplyKitStartupEffects(Kit);
+        if (GetOwner() && GetOwner()->HasAuthority())
+        {
+            AddKitBaseEffects(Kit);
+            AddKitStartupAbilities(Kit);
+            ApplyKitStartupEffects(Kit);
+        }
     }
 
-    if (AdditionalKit)
+    if (IsValid(AdditionalKit))
         AdditionalKit->Parents.Pop();
 
 }

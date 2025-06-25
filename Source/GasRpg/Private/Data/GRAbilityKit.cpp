@@ -1,8 +1,6 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "Data/GRAbilityKit.h"
-#include "AbilitySystem/Effect/GRPrimaryAttributesBaseEffect.h"
-#include "AbilitySystem/Effect/GRSecondaryAttributesBaseEffect.h"
 #include "AbilitySystem/GRAbilitySystemComponent.h"
 
 void UGRAbilityKit::GetBaseEffects(TArray<TSubclassOf<UGameplayEffect>> &Effects) const
