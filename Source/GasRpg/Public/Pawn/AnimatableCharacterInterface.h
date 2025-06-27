@@ -16,10 +16,8 @@ struct FRpgCharacterMontage
 {
 	GENERATED_BODY()
 
-	FRpgCharacterMontage(){}
-
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	class UAnimMontage* Montage = nullptr;
+	UAnimMontage* Montage = nullptr;
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
 	FGameplayTag EventTag = FGameplayTag::EmptyTag;
@@ -33,8 +31,6 @@ USTRUCT(BlueprintType, Blueprintable)
 struct FRpgCharacterMontageArray
 {
     GENERATED_BODY()
-
-    FRpgCharacterMontageArray() {}
 
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
     TArray<FRpgCharacterMontage> Montages;
