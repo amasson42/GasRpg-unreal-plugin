@@ -2,11 +2,12 @@
 
 
 #include "Player/GRPlayerController.h"
-#include "UI/HUD/GRHUD.h"
+#include "UI/HUD/GRHUDOverlayComponent.h"
 #include "EnhancedInputComponent.h"
 #include "Input/GRInputConfig.h"
 #include "AbilitySystem/GRAbilitySystemComponent.h"
 #include "AbilitySystemBlueprintLibrary.h"
+#include "GameFramework/HUD.h"
 
 
 AGRPlayerController::AGRPlayerController()
@@ -32,9 +33,9 @@ void AGRPlayerController::BeginPlay()
 
 void AGRPlayerController::AcknowledgePossession(APawn* aPawn)
 {
-    if (AGRHUD* HUD = GetHUD<AGRHUD>())
+    if (UGRHUDOverlayComponent* HUD = GetHUD()->GetComponentByClass<UGRHUDOverlayComponent>())
     {
-        HUD->InitOverlay();
+        HUD->InitOverlay(this, aPawn);
     }
 }
 

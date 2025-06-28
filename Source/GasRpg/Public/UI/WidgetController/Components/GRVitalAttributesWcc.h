@@ -3,27 +3,21 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "UI/WidgetControllerComponent.h"
+#include "UI/WidgetController/Components/AAbilitySystemWidgetComponent.h"
 #include "GRVitalAttributesWcc.generated.h"
 
-
-class UGRAbilitySystemComponent;
 class UGRVitalAttributeSet;
-
 
 /**
  * 
  */
 UCLASS(BlueprintType)
-class GASRPG_API UGRVitalAttributesWcc : public UWidgetControllerComponent
+class GASRPG_API UGRVitalAttributesWcc : public UAAbilitySystemWidgetComponent
 {
 	GENERATED_BODY()
 
 
 public:
-
-    UFUNCTION(BlueprintCallable, category = "Initialize")
-    void Initialize(UGRAbilitySystemComponent* ASC, UGRVitalAttributeSet* AS);
 
 	virtual void BroadcastValues() override;
 	virtual void BindCallbacksToDependencies() override;
@@ -38,8 +32,7 @@ public:
 
 protected:
 
-    UPROPERTY()
-    TObjectPtr<UGRAbilitySystemComponent> AbilitySystemComponent;
+	virtual void SetObservedActor(AActor* Actor) override;
 
     UPROPERTY()
     TObjectPtr<UGRVitalAttributeSet> AttributeSet;

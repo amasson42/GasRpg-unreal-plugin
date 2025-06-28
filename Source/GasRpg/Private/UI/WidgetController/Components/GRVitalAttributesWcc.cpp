@@ -6,12 +6,6 @@
 #include "AbilitySystem/GRVitalAttributeSet.h"
 
 
-void UGRVitalAttributesWcc::Initialize(UGRAbilitySystemComponent* ASC, UGRVitalAttributeSet* AS)
-{
-    AbilitySystemComponent = ASC;
-    AttributeSet = AS;
-}
-
 void UGRVitalAttributesWcc::BroadcastValues()
 {
     if (AttributeSet)
@@ -38,4 +32,11 @@ void UGRVitalAttributesWcc::BindCallbacksToDependencies()
         });
     }
 
+}
+
+void UGRVitalAttributesWcc::SetObservedActor(AActor* Actor)
+{
+    Super::SetObservedActor(Actor);
+
+    AttributeSet = Cast<UGRVitalAttributeSet>(const_cast<UAttributeSet*>(AbilitySystemComponent->GetAttributeSet(UGRVitalAttributeSet::StaticClass())));
 }

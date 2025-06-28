@@ -3,25 +3,20 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "UI/WidgetControllerComponent.h"
+#include "UI/WidgetController/Components/AAbilitySystemWidgetComponent.h"
 #include "GameplayTagContainer.h"
 #include "GRAbilitiesInputWcc.generated.h"
-
-class UGRAbilitySystemComponent;
 
 
 /**
  * 
  */
 UCLASS(BlueprintType)
-class GASRPG_API UGRAbilitiesInputWcc : public UWidgetControllerComponent
+class GASRPG_API UGRAbilitiesInputWcc : public UAAbilitySystemWidgetComponent
 {
 	GENERATED_BODY()
 
 public:
-
-    UFUNCTION(BlueprintCallable, category = "Initialize")
-    void Initialize(UGRAbilitySystemComponent* ASC);
 
 	virtual void BroadcastValues() override;
 
@@ -37,9 +32,6 @@ public:
 protected:
 
 	virtual void BindCallbacksToDependencies() override;
-
-    UPROPERTY()
-    TObjectPtr<UGRAbilitySystemComponent> AbilitySystemComponent;
 
 
 private:

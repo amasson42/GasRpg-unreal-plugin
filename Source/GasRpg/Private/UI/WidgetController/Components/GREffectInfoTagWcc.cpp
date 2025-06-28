@@ -6,11 +6,6 @@
 #include "GasRpgGameplayTags.h"
 
 
-void UGREffectInfoTagWcc::Initialize(UGRAbilitySystemComponent* ASC)
-{
-    AbilitySystemComponent = ASC;
-}
-
 void UGREffectInfoTagWcc::BroadcastValues()
 {
 

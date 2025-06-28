@@ -5,11 +5,6 @@
 #include "AbilitySystem/GRAbilitySystemComponent.h"
 
 
-void UGRAbilitiesInputWcc::Initialize(UGRAbilitySystemComponent* ASC)
-{
-    AbilitySystemComponent = ASC;
-}
-
 void UGRAbilitiesInputWcc::BroadcastValues()
 {
     if (IsValid(AbilitySystemComponent))

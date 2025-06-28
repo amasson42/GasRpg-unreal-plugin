@@ -53,6 +53,7 @@ public:
     FGameplayTag Ability_Cooldown;
     FGameplayTag Ability_Cost;
 
+    // TODO: Replace with another system
     FGameplayTag Ability_Status;
     FGameplayTag Ability_Status_Locked;
 	FGameplayTag Ability_Status_Eligible;

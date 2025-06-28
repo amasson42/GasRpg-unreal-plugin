@@ -5,11 +5,6 @@
 #include "AbilitySystem/GRAbilitySystemComponent.h"
 
 
-void UGRAbilitiesStatusWcc::Initialize(UGRAbilitySystemComponent* ASC)
-{
-    AbilitySystemComponent = ASC;
-}
-
 void UGRAbilitiesStatusWcc::BroadcastValues()
 {
     if (AbilitySystemComponent)

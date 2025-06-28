@@ -3,27 +3,21 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "UI/WidgetControllerComponent.h"
+#include "UI/WidgetController/Components/AAbilitySystemWidgetComponent.h"
 #include "GameplayTagContainer.h"
 #include "GREffectInfoTagWcc.generated.h"
 
-
-class UGRAbilitySystemComponent;
 
 
 /**
  * 
  */
 UCLASS(BlueprintType)
-class GASRPG_API UGREffectInfoTagWcc : public UWidgetControllerComponent
+class GASRPG_API UGREffectInfoTagWcc : public UAAbilitySystemWidgetComponent
 {
 	GENERATED_BODY()
 
 public:
-
-
-    UFUNCTION(BlueprintCallable, category = "Initialize")
-	void Initialize(UGRAbilitySystemComponent* ASC);
 
 	virtual void BroadcastValues() override;
 	virtual void BindCallbacksToDependencies() override;
@@ -32,10 +26,5 @@ public:
 
     UPROPERTY(BlueprintAssignable, Category = "GAS|Effect Event Tag")
     FOnNewEffectInfoTagSignature OnNewEffectInfoTag;
-
-protected:
-
-	UPROPERTY()
-	TObjectPtr<UGRAbilitySystemComponent> AbilitySystemComponent;
 
 };

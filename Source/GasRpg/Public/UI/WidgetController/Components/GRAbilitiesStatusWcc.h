@@ -3,7 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "UI/WidgetControllerComponent.h"
+#include "UI/WidgetController/Components/AAbilitySystemWidgetComponent.h"
 #include "GameplayTagContainer.h"
 #include "GRAbilitiesStatusWcc.generated.h"
 
@@ -14,16 +14,11 @@ class UGRAbilitySystemComponent;
  * 
  */
 UCLASS(BlueprintType)
-class GASRPG_API UGRAbilitiesStatusWcc : public UWidgetControllerComponent
+class GASRPG_API UGRAbilitiesStatusWcc : public UAAbilitySystemWidgetComponent
 {
 	GENERATED_BODY()
 
 public:
-
-
-
-    UFUNCTION(BlueprintCallable, category = "Initialize")
-    void Initialize(UGRAbilitySystemComponent* ASC);
 
 	virtual void BroadcastValues() override;
 	virtual void BindCallbacksToDependencies() override;
@@ -35,13 +30,6 @@ public:
     FOnAbilityStatusUpdatedSignature OnAbilityStatusUpdated;
     UPROPERTY(BlueprintAssignable, Category = "GAS|Abilities")
 	FOnAbilityStatusRemovedSignature OnAbilityStatusRemoved;
-
-
-protected:
-
-    UPROPERTY()
-    TObjectPtr<UGRAbilitySystemComponent> AbilitySystemComponent;
-
 
 private:
 
