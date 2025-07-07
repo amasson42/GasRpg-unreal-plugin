@@ -7,6 +7,7 @@
 #include "GameplayEffectExtension.h"
 #include "AbilitySystem/GRAbilitySystemLibrary.h"
 #include "GasRpgGameplayTags.h"
+#include "Player/GRPlayerControllerFloatingDamagesComponent.h"
 
 
 UGRVitalAttributeSet::UGRVitalAttributeSet()
@@ -103,33 +104,42 @@ void UGRVitalAttributeSet::HandleModificationData_IncomingDamage(const FGameplay
 
 void UGRVitalAttributeSet::PopFloatingDamages(float Damages, const FGameplayEffectModCallbackData& Data, const FEffectProperties& Props)
 {
-    // AGRPlayerController* SourcePC = IsValid(Props.SourceController) ? Cast<AGRPlayerController>(Props.SourceController) : nullptr;
-    // AGRPlayerController* TargetPC = IsValid(Props.TargetController) ? Cast<AGRPlayerController>(Props.TargetController) : nullptr;
-    // if (SourcePC || TargetPC)
-    // {
-    //     FFloatingDamage FloatingDamage;
-    //
-    //     FGameplayTagContainer AllAssetTags;
-    //     Data.EffectSpec.GetAllAssetTags(AllAssetTags);
-    //     UGRAbilitySystemLibrary::GetMatchingTagsFromTagContainer(
-    //         AllAssetTags,
-    //         FGRGameplayTags::Get().DamageTag,
-    //         FloatingDamage.Tags
-    //     );
-    //     FloatingDamage.Source = Props.SourceAvatarActor;
-    //     FloatingDamage.Target = Props.TargetAvatarActor;
-    //     FloatingDamage.Damages = Damages;
-    //
-    //     if (UGRAbilitySystemLibrary::IsBlockedHit(Props.EffectContextHandle))
-    //         FloatingDamage.Tags.AddTag(FGRGameplayTags::Get().DamageTag_Blocked);
-    //     if (UGRAbilitySystemLibrary::IsCriticalHit(Props.EffectContextHandle))
-    //         FloatingDamage.Tags.AddTag(FGRGameplayTags::Get().DamageTag_Critical);
-    //
-    //     if (SourcePC)
-    //         SourcePC->Client_ShowFloatingDamages(FloatingDamage);
-    //     if (TargetPC)
-    //         TargetPC->Client_ShowFloatingDamages(FloatingDamage);
-    // }
+    APlayerController* SourcePlayerController = IsValid(Props.SourceController) ? Cast<APlayerController>(Props.SourceController) : nullptr;
+	UGRPlayerControllerFloatingDamagesComponent* SourceComponent =
+		IsValid(SourcePlayerController) ?
+		SourcePlayerController->GetComponentByClass<UGRPlayerControllerFloatingDamagesComponent>() :
+		nullptr;
+    APlayerController* TargetPlayerController = IsValid(Props.TargetController) ? Cast<APlayerController>(Props.TargetController) : nullptr;
+	UGRPlayerControllerFloatingDamagesComponent* TargetComponent =
+		IsValid(TargetPlayerController) ?
+		TargetPlayerController->GetComponentByClass<UGRPlayerControllerFloatingDamagesComponent>() :
+		nullptr;
+
+	if (IsValid(SourceComponent) || IsValid(TargetComponent))
+    {
+        FFloatingDamage FloatingDamage;
+    
+        FGameplayTagContainer AllAssetTags;
+        Data.EffectSpec.GetAllAssetTags(AllAssetTags);
+        UGRAbilitySystemLibrary::GetMatchingTagsFromTagContainer(
+            AllAssetTags,
+            FGRGameplayTags::Get().DamageTag,
+            FloatingDamage.Tags
+        );
+        FloatingDamage.Source = Props.SourceAvatarActor;
+        FloatingDamage.Target = Props.TargetAvatarActor;
+        FloatingDamage.Damages = Damages;
+    
+        if (UGRAbilitySystemLibrary::IsBlockedHit(Props.EffectContextHandle))
+            FloatingDamage.Tags.AddTag(FGRGameplayTags::Get().DamageTag_Blocked);
+        if (UGRAbilitySystemLibrary::IsCriticalHit(Props.EffectContextHandle))
+            FloatingDamage.Tags.AddTag(FGRGameplayTags::Get().DamageTag_Critical);
+    
+        if (SourceComponent)
+            SourceComponent->Client_ShowFloatingDamages(FloatingDamage);
+        if (TargetComponent)
+            TargetComponent->Client_ShowFloatingDamages(FloatingDamage);
+    }
 }
 
 void UGRVitalAttributeSet::SendGameplayEventToSourceActor(const FGameplayTag& EventTag, float Magnitude, const FGameplayEffectModCallbackData& Data, const FEffectProperties& Props)
